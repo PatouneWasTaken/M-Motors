@@ -1,8 +1,7 @@
 <?php
 
-require '../config/database.php';
+$page = $_GET['page'] ?? 'home';
 
-$query = $pdo->query("SELECT * FROM cars");
-$vehicles = $query->fetchAll();
-
-print_r($vehicles);
+if ($page === 'register') {
+    require __DIR__ . '/../views/register-form.php';
+}
