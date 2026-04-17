@@ -2,7 +2,7 @@
 require __DIR__ . '/../config/database.php';
 
 if (!isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'])) {
-    die("Formulaire incomplet");
+    die("Tous les champs sont obligatoires");
 }
 
 $firstname = trim($_POST['firstname']);
@@ -14,7 +14,7 @@ if (!$email) {
     die("Email invalide");
 }
 
-$password = trim($_POST['password']);
+$password = $_POST['password'];
 
 if (empty($firstname) || empty($lastname) || empty($password)) {
     die("Tous les champs sont obligatoires");
