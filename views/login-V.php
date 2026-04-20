@@ -8,7 +8,7 @@
 
 <h2>Connexion</h2>
 
-<form action="/M-Motors/controllers/login-control.php" method="POST">
+<form action="/M-Motors/controllers/login-C.php" method="POST">
 
     <label for="email">Adresse email :</label>
     <input type="email" id="email" name="email" required><br><br>

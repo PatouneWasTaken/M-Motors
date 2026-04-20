@@ -8,7 +8,7 @@
 
 <h2>Inscription</h2>
 
-<form action="/M-Motors/controllers/register-control.php" method="POST">
+<form action="/M-Motors/controllers/register-C.php" method="POST">
 
     <label for="firstname">Prénom :</label>
     <input type="text" id="firstname" name="firstname" required><br><br>
