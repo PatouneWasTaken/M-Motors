@@ -1,15 +1,12 @@
-<?php require_once __DIR__ . "/../toolbox/tools.php"; ?>
+<?php
+require_once __DIR__ . "/../toolbox/tools.php"; 
+$title = "Véhicules";
+require __DIR__ . "/components/head.php"
+?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Véhicules</title>
-    <link rel="stylesheet" href="/assets/style.css">
-</head>
 <body>
 
-<?php require_once __DIR__ . "/header-V.php"; ?>
+<?php require_once __DIR__ . "/components/header.php"; ?>
 
 <main>
 
@@ -64,7 +61,7 @@
 
 </main>
 
-<?php require_once __DIR__ . "/footer-V.php"; ?>
+<?php require_once __DIR__ . "/components/footer.php"; ?>
 
 </body>
 </html>
