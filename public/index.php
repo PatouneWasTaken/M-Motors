@@ -7,6 +7,11 @@ $page = $_GET['page'] ?? 'home';
 
 switch ($page) {
 
+	case 'vehicle':
+    	$controller = new VehicleController();
+    	$controller->show();
+    	break;
+
     case 'register':
         require __DIR__ . '/../views/register-V.php';
         break;

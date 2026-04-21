@@ -48,7 +48,7 @@
                         <?= number_format($vehicle['price'], 0, ',', ' ') ?> €
                     </p>
 
-                    <a class="btn" href="/vehicle.php?id=<?= (int)$vehicle['id'] ?>">
+                    <a class="btn" href="/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?>">
                         Voir détails
                     </a>
 

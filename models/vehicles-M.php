@@ -24,3 +24,13 @@ function getVehicles($type = null) {
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function getVehicleById($id) {
+    global $pdo;
+
+    $sql = "SELECT * FROM vehicles WHERE id = :id LIMIT 1";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $id]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
