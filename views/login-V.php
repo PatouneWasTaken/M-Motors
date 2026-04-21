@@ -6,6 +6,9 @@ require __DIR__ . "/components/head.php"
 
 <body>
 
+<?php require_once __DIR__ . "/components/header.php"; ?>
+
+<main class="login">
 <h2>Connexion</h2>
 
 <form action="/M-Motors/controllers/login-C.php" method="POST">
@@ -19,6 +22,7 @@ require __DIR__ . "/components/head.php"
     <button type="submit">Se connecter</button>
 
 </form>
+</main>
 
 </body>
 </html>
