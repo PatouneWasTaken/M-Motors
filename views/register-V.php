@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Inscription</title>
-</head>
+<?php
+require_once __DIR__ . "/../toolbox/tools.php"; 
+$title = "Inscription";
+require __DIR__ . "/components/head.php"
+?>
+
 <body>
 
 <h2>Inscription</h2>

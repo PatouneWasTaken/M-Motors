@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Connexion</title>
-</head>
+<?php
+require_once __DIR__ . "/../toolbox/tools.php"; 
+$title = "Connexion";
+require __DIR__ . "/components/head.php"
+?>
+
 <body>
 
 <h2>Connexion</h2>
