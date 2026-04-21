@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once '../controllers/vehicles-C.php';
 require_once '../toolbox/tools.php';
 
@@ -10,6 +11,20 @@ switch ($page) {
 	case 'vehicle':
     	$controller = new VehicleController();
     	$controller->show();
+    	break;
+
+	case 'apply':
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: /index.php?page=login");
+        exit;
+    }
+    require __DIR__ . '/../views/apply-V.php';
+    break;
+
+	case 'submit_app':
+    	require_once '../controllers/apply-C.php';
+    	$controller = new ApplicationController();
+    	$controller->store();
     	break;
 
     case 'register':

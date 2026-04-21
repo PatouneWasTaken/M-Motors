@@ -35,6 +35,16 @@ require __DIR__ . "/components/head.php"
                 <?= nl2br(e($vehicle['description'])) ?>
             </p>
 
+			<?php if (isset($_SESSION['user_id'])) : ?>
+    		<a class="submit-btn" href="/index.php?page=apply&vehicle_id=<?= (int)$vehicle['id'] ?>">
+       			Déposer un dossier
+    		</a>
+			<?php else : ?>
+			<a class="login-btn" href="/index.php?page=login">
+        		Connectez-vous pour déposer un dossier
+   			 </a>
+			<?php endif; ?>
+
         </div>
 
     </div>
