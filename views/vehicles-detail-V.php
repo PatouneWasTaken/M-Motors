@@ -24,7 +24,7 @@ require __DIR__ . "/components/head.php"
         <div class="detail-info">
 
             <p class="type">
-                <?= e(vehicleType($vehicle['is_for_sale'])) ?>
+                <?= e(vehicleType($vehicle['type'])) ?>
             </p>
 
             <p class="price">

@@ -10,12 +10,31 @@ require __DIR__ . "/components/head.php"
 
 <main>
 
+	<form method="GET" action="/index.php" class="price-filter">
+
+        <?php if ($currentType): ?>
+            <input type="hidden" name="type" value="<?= e($currentType) ?>">
+        <?php endif; ?>
+
+        <input type="number" name="min" placeholder="Prix min" value="<?= e($min) ?>">
+        <input type="number" name="max" placeholder="Prix max" value="<?= e($max) ?>">
+
+        <button type="submit">Filtrer</button>
+
+    </form>
+
 <?php if (empty($vehicles)) : ?>
     <p class="empty">Aucun véhicule disponible.</p>
 
 <?php else : ?>
 
     <section class="vehicle-grid">
+		<p class="filter">
+    		Entre 
+    		<?= $min ? "Min: $min €" : '' ?>
+			 et 
+    		<?= $max ? "Max: $max €" : '' ?>
+		</p>
 
         <?php foreach ($vehicles as $vehicle) : 
         
@@ -34,7 +53,7 @@ require __DIR__ . "/components/head.php"
                     <h2><?= e($vehicle['name']) ?></h2>
 
                     <p class="type">
-                        <?= e(vehicleType($vehicle['is_for_sale'])) ?>
+                        <?= e(vehicleType($vehicle['type'])) ?>
                     </p>
 
                     <p class="description">
