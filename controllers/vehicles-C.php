@@ -6,24 +6,61 @@ class VehicleController {
 
     public function index() {
 
+		$vehicles = [];
+		$totalPages = 0;
+
         // Récupérer le filtre
 		$type = $_GET['type'] ?? null;
 		$min = $_GET['min'] ?? null;
 		$max = $_GET['max'] ?? null;
+		$brand = $_GET['brand'] ?? null;
 
         // Sécuriser
         if (!in_array($type, ['sale', 'rent'])) {
             $type = null;
         }
+
 		$min = is_numeric($min) ? (int)$min : null;
 		$max = is_numeric($max) ? (int)$max : null;
 
+		$page = 1;
+    	$limit = 10;
+
         // Récupérer les données
-        $vehicles = getVehicles($type, $min, $max);
+        $vehicles = getVehicles($type, $min, $max, $brand, $page, $limit);
+    	$total = countVehicles($type, $min, $max, $brand);
+    	$totalPages = ceil($total / $limit);
+    	$brands = getBrands();
 
         // Charger la vue
         require __DIR__ . '/../views/vehicles-V.php';
     }
+
+	public function asyncList() {
+
+    	$type = $_GET['type'] ?? null;
+    	$min = $_GET['min'] ?? null;
+    	$max = $_GET['max'] ?? null;
+    	$brand = $_GET['brand'] ?? null;
+
+    	if (!in_array($type, ['sale', 'rent'])) {
+        	$type = null;
+    	}
+
+    	$min = is_numeric($min) ? (int)$min : null;
+    	$max = is_numeric($max) ? (int)$max : null;
+
+    	$limit = 10;
+
+		// Récupérer les données
+    	$vehicles = getVehicles($type, $min, $max, $brand, $page, $limit);
+    	$total = countVehicles($type, $min, $max, $brand);
+
+    	$totalPages = ceil($total / $limit);
+
+    	// retourner HTML
+    	require __DIR__ . '/../views/components/vehicles-list.php';
+	}
 
 	public function show() {
 

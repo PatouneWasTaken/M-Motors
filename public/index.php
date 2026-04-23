@@ -35,6 +35,11 @@ switch ($page) {
         require __DIR__ . '/../views/login-V.php';
         break;
 
+	case 'vehicles':
+   		$controller = new VehicleController();
+    	$controller->asyncList();
+    	break;
+
     case 'home':
     default:
         $controller = new VehicleController();
