@@ -40,6 +40,17 @@ switch ($page) {
     	$controller->asyncList();
     	break;
 
+	case 'admin':
+    	require_once '../controllers/admin-C.php';
+    	$controller = new AdminController();
+    	$controller->dashboard();
+    	break;
+
+	case 'admin_vehicles':
+    	$controller = new AdminController();
+    	$controller->vehicles();
+    	break;
+
     case 'home':
     default:
         $controller = new VehicleController();
