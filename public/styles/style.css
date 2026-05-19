@@ -1,3 +1,87 @@
+/* SETTINGS */
+html, body {
+	margin: 0;
+	padding: 0;
+	color: #191825;
+}
+
+a, a:visited, a:hover, a:active {
+    color: #191825;
+    text-decoration: none;
+}
+
+a:hover { 
+    cursor:pointer;  
+}
+
+header, main, footer {
+	padding: 5px;
+}
+
+body {
+	height: 100vh;
+}
+
+header {
+	min-height: 6vh;
+	background-color: #CE1212;
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+}
+
+header a {
+	color: #EEEBDD !important;
+	margin: 0 14px;
+	font-size: larger;
+}
+
+header img {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.profile img{
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	background-color: #EEEBDD;
+}
+
+.left-nav {
+	display: flex;
+	align-items: end;
+}
+
+.left-nav nav {
+	margin-left: 10px;
+}
+
+footer {
+	min-height: 10vh;
+	background-color: #CE1212;
+	line-height: 30px;
+	border-top: 1px solid #191825;
+}
+
+footer a {
+	border: 1px solid #191825;
+	border-radius: 10px;
+	background-color: #EEEBDD;
+	padding: 4px 6px;
+}
+
+main {
+	min-height: 84vh;
+	background-color: #EEEBDD;
+}
+
+/* navigation */
+.filters {
+	margin: 8px 0;
+}
+
 .pagination {
   margin-top: 20px;
 }
@@ -8,24 +92,59 @@
   cursor: pointer;
 }
 
+/* cards */
+.card {
+	display: flex;
+	align-items: center;
+	border-top: 1px solid #191825;
+}
 
-/* état normal */
+.card img {
+	width: 300px;
+	height: 169px;
+}
+
+.card-content {
+	width: 80vw;
+	padding: 24px;
+}
+
+.card-content h2 {
+	margin-bottom: 0;
+}
+
+.price {
+	margin: 0;
+	font-size: large;
+}
+
+.details-line {
+	display: block;
+	width: 100%;
+	text-align: end;
+}
+.details-btn {
+	color: #EEEBDD !important;
+	font-weight: bold;
+	border: 1px solid #191825;
+	border-radius: 10px;
+	background-color: #CE1212;
+	padding: 4px 6px;
+}
+
+/* ANIMATIONS */
+/* normal state */
 .fade {
   opacity: 1;
   transition: opacity 0.3s ease;
 }
 
-.fade p {
-  text-align: center;
-  padding: 20px;
-}
-
-/* état caché */
+/* hidden state */
 .fade-out {
   opacity: 0;
 }
 
-/* état initial des cartes */
+/* cards initial states */
 .card {
   opacity: 0;
   transform: translateY(15px);

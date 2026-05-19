@@ -48,7 +48,12 @@ switch ($page) {
 
 	case 'admin_vehicles':
     	$controller = new AdminController();
-    	$controller->vehicles();
+    	$controller->adminVehicles();
+    	break;
+
+	case 'admin_add_vehicles':
+    	$controller = new AdminController();
+    	$controller->addVehicle();
     	break;
 
     case 'home':

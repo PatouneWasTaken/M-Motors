@@ -6,7 +6,7 @@ class AdminController {
 
     private function checkAdmin() {
         if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-            header("Location: /M-Motors/public/index.php");
+            header("Location: /index.php");
             exit;
         }
     }
@@ -14,36 +14,10 @@ class AdminController {
     // Dashboard
     public function dashboard() {
         $this->checkAdmin();
-
-		$vehicles = [];
-		$totalPages = 0;
-
-        // Récupérer le filtre
-		$type = $_GET['type'] ?? null;
-		$min = $_GET['min'] ?? null;
-		$max = $_GET['max'] ?? null;
-		$brand = $_GET['brand'] ?? null;
-		$page = 1;
-    	$limit = 10;
-
-        if (!in_array($type, ['sale', 'rent'])) {
-            $type = null;
-        }
-
-		$min = is_numeric($min) ? (int)$min : null;
-		$max = is_numeric($max) ? (int)$max : null;
-
-        // Récupérer les données
-        $vehicles = getVehicles($type, $min, $max, $brand, $page, $limit);
-    	$total = countVehicles($type, $min, $max, $brand);
-    	$totalPages = ceil($total / $limit);
-    	$brands = getBrands();
-
-        // Charger la vue
         require __DIR__ . '/../views/admin/dashboard-V.php';
     }
 
-
+    // Liste véhicules (réutilise MODEL)
     public function adminVehicles() {
         $this->checkAdmin();
 
@@ -119,12 +93,9 @@ class AdminController {
                     return;
                 }
             }
-        } else {
-			echo "Fichier manquant";
-            return;
-		}
+        }
 
-        // Validation
+        // Validation minimale
         $brand = trim($_POST['brand'] ?? '');
         $model = trim($_POST['model'] ?? '');
         $type = $_POST['type'] ?? '';
@@ -141,7 +112,7 @@ class AdminController {
             return;
         }
 
-		// SQL
+        // INSERT
         $sql = "INSERT INTO vehicles (brand, model, type, price, photo, description)
                 VALUES (:brand, :model, :type, :price, :photo, :description)";
 

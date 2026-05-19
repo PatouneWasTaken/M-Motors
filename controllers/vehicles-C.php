@@ -14,17 +14,15 @@ class VehicleController {
 		$min = $_GET['min'] ?? null;
 		$max = $_GET['max'] ?? null;
 		$brand = $_GET['brand'] ?? null;
+		$page = 1;
+		$limit = 10;
 
-        // Sécuriser
         if (!in_array($type, ['sale', 'rent'])) {
             $type = null;
         }
 
 		$min = is_numeric($min) ? (int)$min : null;
 		$max = is_numeric($max) ? (int)$max : null;
-
-		$page = 1;
-    	$limit = 10;
 
         // Récupérer les données
         $vehicles = getVehicles($type, $min, $max, $brand, $page, $limit);
@@ -42,6 +40,8 @@ class VehicleController {
     	$min = $_GET['min'] ?? null;
     	$max = $_GET['max'] ?? null;
     	$brand = $_GET['brand'] ?? null;
+		$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
+		$limit = 10;
 
     	if (!in_array($type, ['sale', 'rent'])) {
         	$type = null;
@@ -50,12 +50,9 @@ class VehicleController {
     	$min = is_numeric($min) ? (int)$min : null;
     	$max = is_numeric($max) ? (int)$max : null;
 
-    	$limit = 10;
-
 		// Récupérer les données
     	$vehicles = getVehicles($type, $min, $max, $brand, $page, $limit);
     	$total = countVehicles($type, $min, $max, $brand);
-
     	$totalPages = ceil($total / $limit);
 
     	// retourner HTML

@@ -6,14 +6,9 @@
 
     <section class="vehicle-grid">
         <?php foreach ($vehicles as $vehicle) : 
-            $image = "/M-Motors/public/assets/no-photos.png";
-
-			if (
-    			!empty($vehicle['photo']) &&
-    			file_exists(__DIR__ . '/../../uploads/' . $vehicle['photo'])
-			) {
-    			$image = "/M-Motors/uploads/" . e($vehicle['photo']);
-			}
+            $image = !empty($vehicle['image']) 
+                ? "/uploads/" . e($vehicle['image']) 
+                : "/assets/no-image.png";
         ?>
 
         <article class="card">
@@ -22,26 +17,27 @@
 
             <div class="card-content">
 
-                <h2>
-					<?= e($vehicle['brand']) . ' ' .  e($vehicle['model'])?> 
-					<span class="type">
-						<?= vehicleType($vehicle['type']) === 'Vente' ? 'à vendre' : 'à louer' ?>
-					</span>
-				</h2>
+                <h2><?= e($vehicle['name']) ?></h2>
 
-				<p class="price">
-                    <?= number_format($vehicle['price'], 0, ',', ' ') ?> €
+                <p class="type">
+                    <?= e(vehicleType($vehicle['type'])) ?>
                 </p>
 
                 <p class="description">
                     <?= e(preview($vehicle['description'] ?? '')) ?>
                 </p>
 
-				<span class="details-line">
-                	<a class="details-btn" href="/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?>">
-                    	Voir détails
-                	</a>
-				</span>
+                <p class="price">
+                    <?= number_format($vehicle['price'], 0, ',', ' ') ?> €
+                </p>
+
+                <a href="/index.php?page=admin_edit_vehicle&id=<?= $v['id'] ?>">
+					Editer
+				</a>
+
+				<a href="/index.php?page=admin_delete_vehicle&id=<?= $v['id'] ?>">
+					Supprimer
+				</a>
 
             </div>
         </article>

@@ -1,14 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const form = document.querySelector("#filters");
-    const container = document.querySelector("#vehicles-container");
+	const form = document.querySelector("#filters");
+    const container = document.querySelector("#admin-vehicles-container");
+    const form = document.querySelector("#add-vehicle-form");
+    const message = document.querySelector("#form-message");
 
-    if (!form || !container) return;
+    // ajout véhicule
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        message.textContent = "Ajout en cours...";
+
+        fetch("/index.php?page=admin_add_vehicles", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.text())
+        .then(response => {
+
+            if (response === "OK") {
+                message.textContent = "Véhicule ajouté!";
+
+                form.reset();
+
+                loadVehicles(); // refresh
+            } else {
+                message.textContent = "Erreur";
+            }
+
+        });
+    });
+
+	if (!form || !container) return;
 
     let timeout = null;
 
 	const animateCards = () => {
-    	const cards = document.querySelectorAll("#vehicles-container .card");
+    	const cards = document.querySelectorAll("#admin-vehicles-container .card");
 
     	cards.forEach((card, index) => {
         	setTimeout(() => {
@@ -27,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
 
-            fetch("/M-Motors/public/index.php?page=vehicles&" + params.toString())
+            fetch("/index.php?page=admin_vehicles" + params.toString())
     			.then(response => response.text())
     			.then(html => {
 
