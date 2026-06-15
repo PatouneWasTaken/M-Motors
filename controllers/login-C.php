@@ -19,7 +19,7 @@ if (empty($password)) {
 
 try {
 
-    $stmt = $pdo->prepare("SELECT id, name, password FROM users WHERE email = ?");
+    $stmt = $pdo->prepare("SELECT id, name, password, is_admin FROM users WHERE email = ?");
     $stmt->execute([$email]);
 
     $user = $stmt->fetch();
@@ -28,6 +28,7 @@ try {
 
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['name'];
+		$_SESSION['admin'] = $user['is_admin'];
 
         session_regenerate_id(true);
 

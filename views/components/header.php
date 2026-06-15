@@ -5,7 +5,7 @@
 
 	if (!in_array($currentType, ['sale', 'rent'])) {
     	$currentType = null;
-	}
+	};
 	?>
 
 	<span class='left-nav'>
@@ -31,12 +31,14 @@
 
 	<nav class='right-nav'>
 
-		<a href="/M-Motors/public/index.php/?page=dashboard">
-			Dashboard
-		</a>
+		<?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {?>
+    		<a href="/M-Motors/public/index.php/?page=dashboard">
+        		Dashboard
+    		</a>
+		<?php } ?>
 
 		<a href="/M-Motors/public/index.php/?page=account" class='profile'>
-			<img src="/M-Motors/public/assets/letter-m.png" alt="">
+			<img src="/M-Motors/public/assets/user.png" alt="">
 		</a>
 
 	</nav>
