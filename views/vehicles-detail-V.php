@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/../toolbox/tools.php"; 
-$title = e($vehicle['name']);
+$title = e($vehicle['brand'] . ' ' . $vehicle['model']);
 require __DIR__ . "/components/head.php"
 ?>
 
@@ -10,15 +10,21 @@ require __DIR__ . "/components/head.php"
 
 <main class="vehicle-detail">
 
-    <h1><?= e($vehicle['name']) ?></h1>
+    <h1><?= e($vehicle['brand'] . ' ' . $vehicle['model']) ?></h1>
 
     <div class="detail-container">
 
         <div class="detail-image">
-            <img 
-                src="<?= !empty($vehicle['image']) ? '/uploads/' . e($vehicle['image']) : '/assets/no-image.png' ?>" 
-                alt="Véhicule"
-            >
+            <?php
+                $image = "/M-Motors/public/assets/no-photos.png";
+                if (
+                    !empty($vehicle['photo']) &&
+                    file_exists(__DIR__ . '/../uploads/' . $vehicle['photo'])
+                ) {
+                    $image = "/M-Motors/uploads/" . e($vehicle['photo']);
+                }
+            ?>
+            <img src="<?= $image ?>" alt="<?= e($vehicle['brand'] . ' ' . $vehicle['model']) ?>">
         </div>
 
         <div class="detail-info">
@@ -36,11 +42,11 @@ require __DIR__ . "/components/head.php"
             </p>
 
 			<?php if (isset($_SESSION['user_id'])) : ?>
-    		<a class="submit-btn" href="/index.php?page=apply&vehicle_id=<?= (int)$vehicle['id'] ?>">
+    		<a class="submit-btn" href="/M-Motors/public/index.php?page=apply&vehicle_id=<?= (int)$vehicle['id'] ?>">
        			Déposer un dossier
     		</a>
 			<?php else : ?>
-			<a class="login-btn" href="/index.php?page=login">
+			<a class="login-btn" href="/M-Motors/public/index.php?page=login">
         		Connectez-vous pour déposer un dossier
    			 </a>
 			<?php endif; ?>
@@ -49,7 +55,7 @@ require __DIR__ . "/components/head.php"
 
     </div>
 
-    <a href="/index.php" class="btn">← Retour</a>
+    <a href="/M-Motors/public/index.php" class="btn">← Retour</a>
 
 </main>
 

@@ -1,89 +1,67 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	const form = document.querySelector("#filters");
+    const BASE = "/M-Motors/public/index.php";
+
+    const addForm   = document.querySelector("#addVehicleForm");
     const container = document.querySelector("#admin-vehicles-container");
-    const form = document.querySelector("#add-vehicle-form");
-    const message = document.querySelector("#form-message");
+    const message   = document.querySelector("#form-message");
 
-    // ajout véhicule
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
+    if (!container) return;
 
-        const formData = new FormData(form);
-
-        message.textContent = "Ajout en cours...";
-
-        fetch("/index.php?page=admin_add_vehicles", {
-            method: "POST",
-            body: formData
-        })
-        .then(res => res.text())
-        .then(response => {
-
-            if (response === "OK") {
-                message.textContent = "Véhicule ajouté!";
-
-                form.reset();
-
-                loadVehicles(); // refresh
-            } else {
-                message.textContent = "Erreur";
-            }
-
-        });
-    });
-
-	if (!form || !container) return;
-
-    let timeout = null;
-
-	const animateCards = () => {
-    	const cards = document.querySelectorAll("#admin-vehicles-container .card");
-
-    	cards.forEach((card, index) => {
-        	setTimeout(() => {
-            	card.classList.add("show");
-        	}, index * 100); // décalage entre chaque carte
-    	});
-	};
-
-    const fetchVehicles = () => {
-
-        const formData = new FormData(form);
-        const params = new URLSearchParams(formData);
-
-        //fade out
-        container.classList.add("fade-out");
-
-        setTimeout(() => {
-
-            fetch("/index.php?page=admin_vehicles" + params.toString())
-    			.then(response => response.text())
-    			.then(html => {
-
-        			container.innerHTML = html;
-
-        			//lancer animation après injection
-					container.classList.remove("fade-out");
-        			animateCards();
-    			})
-                .catch(err => {
-                    console.error(err);
-                    container.innerHTML = "<p>Erreur de chargement.</p>";
-                    container.classList.remove("fade-out");
-                });
-
-        }, 300);
+    // Animation d'apparition des cartes
+    const animateCards = () => {
+        document.querySelectorAll("#admin-vehicles-container .card")
+            .forEach((card, i) => setTimeout(() => card.classList.add("show"), i * 100));
     };
 
-	fetchVehicles();
+    // Charge / rafraîchit la liste des véhicules
+    const loadVehicles = () => {
+        container.classList.add("fade-out");
+        fetch(`${BASE}?page=admin_vehicles`)
+            .then(res => res.text())
+            .then(html => {
+                container.innerHTML = html;
+                container.classList.remove("fade-out");
+                animateCards();
+            })
+            .catch(err => {
+                console.error(err);
+                container.innerHTML = "<p>Erreur de chargement.</p>";
+                container.classList.remove("fade-out");
+            });
+    };
 
-    //no spam
-    form.addEventListener("input", () => {
-        clearTimeout(timeout);
-        timeout = setTimeout(fetchVehicles, 300);
-    });
+    // Ajout d'un véhicule (AJAX)
+    if (addForm) {
+        addForm.addEventListener("submit", (e) => {
+            e.preventDefault();
 
-    form.addEventListener("change", fetchVehicles);
+            const formData = new FormData(addForm);
+            if (message) message.textContent = "Ajout en cours...";
 
+            fetch(`${BASE}?page=admin_add_vehicles`, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(response => {
+                if (response.trim() === "OK") {
+                    if (message) message.textContent = "Véhicule ajouté !";
+                    addForm.reset();
+                    const preview = document.querySelector("#preview");
+                    if (preview) preview.style.display = "none";
+                    loadVehicles();
+                } else {
+                    if (message) message.textContent = response || "Erreur";
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                if (message) message.textContent = "Erreur réseau";
+            });
+        });
+    }
+
+    // Chargement initial
+    loadVehicles();
 });

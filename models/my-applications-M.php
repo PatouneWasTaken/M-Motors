@@ -9,7 +9,7 @@ function getUserApplications($user_id) {
     		a.id,
     		a.status,
     		a.created_at,
-    		v.name AS vehicle_name,
+    		CONCAT(v.brand, ' ', v.model) AS vehicle_name,
     		v.price,
     		v.type
 		FROM applications a

@@ -6,8 +6,6 @@ class ApplicationController {
 
     public function store() {
 
-    	session_start();
-
     	if (!isset($_SESSION['user_id'])) {
         	die("Accès refusé");
     	}
@@ -39,7 +37,7 @@ class ApplicationController {
         	'document' => $filename
     	]);
 
-    	header("Location: /index.php?success=1");
+    	header("Location: /M-Motors/public/index.php?success=1");
     	exit;
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/../toolbox/tools.php"; 
-$title = e($vehicle['name']);
+$title = "Mes dossiers";
 require __DIR__ . "/components/head.php"
 ?>
 
@@ -22,8 +22,8 @@ require __DIR__ . "/components/head.php"
             <li>
                 <?= e($app['vehicle_name']) ?> - 
                 <?= number_format($app['price'], 0, ',', ' ') ?> € -
-                <?= e(vehicleType($vehicle['type'])) ?> -
-                Statut : <?= e($appStatus($app['status'])) ?>
+                <?= e(vehicleType($app['type'])) ?> -
+                Statut : <?= e(appStatus($app['status'])) ?>
             </li>
         <?php endforeach; ?>
     </ul>

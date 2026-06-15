@@ -12,7 +12,7 @@ require __DIR__ . "/components/head.php"
 
 <h1>Déposer un dossier</h1>
 
-<form action="/index.php?page=submit_app" method="POST" enctype="multipart/form-data">
+<form action="/M-Motors/public/index.php?page=submit_app" method="POST" enctype="multipart/form-data">
 
     <input type="hidden" name="vehicle_id" value="<?= (int)($_GET['vehicle_id'] ?? 0) ?>">
 

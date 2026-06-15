@@ -5,7 +5,7 @@ require_once __DIR__ . '/../models/vehicles-M.php';
 class AdminController {
 
     private function checkAdmin() {
-        if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+        if (!isset($_SESSION['user_id']) || empty($_SESSION['admin']) || $_SESSION['admin'] != 1) {
             header("Location: /M-Motors/public/index.php");
             exit;
         }
@@ -141,9 +141,15 @@ class AdminController {
             return;
         }
 
-		// SQL
-        $sql = "INSERT INTO vehicles (brand, model, type, price, photo, description)
-                VALUES (:brand, :model, :type, :price, :photo, :description)";
+		// La colonne photo est NOT NULL : on refuse si l'upload n'a pas abouti
+        if ($imageName === null) {
+            echo "Image invalide (format accepté : jpg, jpeg, png, webp)";
+            return;
+        }
+
+		// SQL — entry_by = id de l'admin connecté (colonne NOT NULL + clé étrangère)
+        $sql = "INSERT INTO vehicles (brand, model, type, price, photo, description, entry_by)
+                VALUES (:brand, :model, :type, :price, :photo, :description, :entry_by)";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
@@ -153,6 +159,7 @@ class AdminController {
             'price' => (int)$price,
             'photo' => $imageName,
             'description' => $description,
+            'entry_by' => $_SESSION['user_id'],
         ]);
 
         echo "OK";

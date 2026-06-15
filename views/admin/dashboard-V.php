@@ -10,7 +10,7 @@ require __DIR__ . "/../components/head.php"
 
 <main>
 
-	<?php require_once __DIR__ . "/../components/fliters.php"; ?>
+	<?php require_once __DIR__ . "/../components/filters.php"; ?>
 
 	<section class="admin-grid">
 
@@ -29,7 +29,7 @@ require __DIR__ . "/../components/head.php"
 
             	<input name="price" type="number" placeholder="Prix" required>
 
-            	<input type="file" name="image" accept="image/*" required>
+            	<input type="file" name="image" accept="image/*" onchange="previewImage(event)" required>
 				<img id="preview" style="max-width:200px; display:none;">
 
 				<textarea id="description" name="description" placeholder="Description.." rows="4" cols="50" required></textarea>
@@ -47,8 +47,8 @@ require __DIR__ . "/../components/head.php"
 
 </main>
 
-<script src="/scripts/admin.js"></script>
-<script src="/../toolbox/tools.js"></script>
+<script src="/M-Motors/public/scripts/admin.js"></script>
+<script src="/M-Motors/toolbox/tools.js"></script>
 
 <?php require_once __DIR__ . "/../components/footer.php"; ?>
 

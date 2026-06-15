@@ -24,7 +24,5 @@
         	<?php endforeach; ?>
     	</select>
 
-        <button type="submit">Filtrer</button>
-
     </form>
 </div>

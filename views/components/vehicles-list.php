@@ -38,7 +38,7 @@
                 </p>
 
 				<span class="details-line">
-                	<a class="details-btn" href="/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?>">
+                	<a class="details-btn" href="/M-Motors/public/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?>">
                     	Voir détails
                 	</a>
 				</span>
