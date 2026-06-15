@@ -157,3 +157,29 @@ main {
   transform: translateY(0);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
+/* PAGE DÉTAIL VÉHICULE */
+.detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+.detail-image {
+  flex: 1 1 320px;
+  max-width: 480px;
+}
+
+.detail-image img {
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.detail-info {
+  flex: 1 1 280px;
+}
