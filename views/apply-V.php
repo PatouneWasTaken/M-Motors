@@ -22,8 +22,8 @@ require __DIR__ . "/components/head.php"
     <label>Email :</label>
     <input type="email" name="email" required>
 
-    <label>Document (PDF) :</label>
-    <input type="file" name="document" required>
+    <label>Document (PDF, 5 Mo max) :</label>
+    <input type="file" name="document" accept="application/pdf" required>
 
     <button type="submit">Envoyer</button>
 

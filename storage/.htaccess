@@ -1,0 +1,13 @@
+# Bloque tout accès direct par URL aux dossiers déposés.
+# Les PDF restent lisibles par PHP côté serveur (téléchargement contrôlé),
+# mais ne sont pas téléchargeables en devinant leur nom.
+
+<IfModule mod_authz_core.c>
+    # Apache 2.4
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    # Apache 2.2 et antérieur
+    Order allow,deny
+    Deny from all
+</IfModule>
