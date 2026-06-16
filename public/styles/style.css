@@ -226,9 +226,7 @@ main {
 .admin-vehicle-row .thumb {
   width: 64px;
   height: 48px;
-  object-fit: cover;
   border-radius: 6px;
-  border: 1px solid #191825;
   flex-shrink: 0;
 }
 
@@ -249,4 +247,56 @@ main {
 
 .delete-btn {
   background-color: #CE1212;
+}
+
+/* DOSSIERS ADMIN */
+.dossiers {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background-color: #EEEBDD;
+}
+
+.dossiers th,
+.dossiers td {
+  padding: 8px 10px;
+  border: 1px solid #191825;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.dossiers th {
+  background-color: #191825;
+  color: #EEEBDD;
+}
+
+.dossiers .actions {
+  display: flex;
+  gap: 8px;
+}
+
+.dossiers .actions form {
+  margin: 0;
+}
+
+.status {
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.status-pending {
+  background-color: #f0c040;
+  color: #191825;
+}
+
+.status-accepted {
+  background-color: #2e9e4f;
+  color: #EEEBDD;
+}
+
+.status-refused {
+  background-color: #CE1212;
+  color: #EEEBDD;
 }

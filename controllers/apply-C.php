@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../toolbox/validators.php';
 
 class ApplicationController {
 
@@ -23,14 +24,14 @@ class ApplicationController {
         global $pdo;
 
         // --- Validation des champs texte ---
-        $user_id    = (int) $_SESSION['user_id'];
-        $vehicle_id = (int) ($_POST['vehicle_id'] ?? 0);
-        $name       = trim($_POST['name'] ?? '');
-        $email      = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-
-        if ($vehicle_id <= 0 || $name === '' || !$email) {
+        if (validateApplication($_POST)) {
             die("Formulaire invalide");
         }
+
+        $user_id    = (int) $_SESSION['user_id'];
+        $vehicle_id = (int) $_POST['vehicle_id'];
+        $name       = trim($_POST['name']);
+        $email      = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
 
         // Le véhicule doit exister
         $stmt = $pdo->prepare("SELECT id FROM vehicles WHERE id = ?");
@@ -47,7 +48,7 @@ class ApplicationController {
         $file = $_FILES['document'];
 
         // Taille (entre 1 octet et 5 Mo)
-        if ($file['size'] <= 0 || $file['size'] > self::MAX_SIZE) {
+        if (!isWithinMaxSize($file['size'], self::MAX_SIZE)) {
             die("Le fichier ne doit pas dépasser 5 Mo");
         }
 
@@ -55,7 +56,7 @@ class ApplicationController {
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $mime  = $finfo->file($file['tmp_name']);
 
-        if ($mime !== 'application/pdf') {
+        if (!isPdfMimeType($mime)) {
             die("Seuls les fichiers PDF sont acceptés");
         }
 

@@ -84,6 +84,24 @@ switch ($page) {
     	$controller->deleteVehicle();
     	break;
 
+	case 'admin_applications':
+    	require_once '../controllers/admin-C.php';
+    	$controller = new AdminController();
+    	$controller->applications();
+    	break;
+
+	case 'admin_update_application':
+    	require_once '../controllers/admin-C.php';
+    	$controller = new AdminController();
+    	$controller->updateApplication();
+    	break;
+
+	case 'admin_download_dossier':
+    	require_once '../controllers/admin-C.php';
+    	$controller = new AdminController();
+    	$controller->downloadDossier();
+    	break;
+
     case 'home':
     default:
         $controller = new VehicleController();

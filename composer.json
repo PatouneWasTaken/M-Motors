@@ -1,0 +1,8 @@
+{
+    "name": "patoune/m-motors",
+    "description": "Site M-Motors - projet d'examen",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^10"
+    }
+}

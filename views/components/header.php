@@ -35,6 +35,9 @@
     		<a href="/M-Motors/public/index.php?page=dashboard">
         		Dashboard
     		</a>
+    		<a href="/M-Motors/public/index.php?page=admin_applications">
+        		Dossiers
+    		</a>
 		<?php } ?>
 
 		<?php if (isset($_SESSION['user_id'])) { ?>

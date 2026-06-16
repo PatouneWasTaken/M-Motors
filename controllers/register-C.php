@@ -1,32 +1,18 @@
 <?php
 require __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../toolbox/validators.php';
 
-if (!isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'])) {
-    die("Tous les champs sont obligatoires");
+$errors = validateRegistration($_POST);
+if ($errors) {
+    die($errors[0]);
 }
 
 $firstname = trim($_POST['firstname']);
 $lastname = trim($_POST['lastname']);
 $name = $firstname . " " . $lastname;
 
-$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-if (!$email) {
-    die("Email invalide");
-}
-
+$email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
 $password = $_POST['password'];
-
-if (empty($firstname) || empty($lastname) || empty($password)) {
-    die("Tous les champs sont obligatoires");
-}
-
-if (
-    strlen($password) < 8 ||
-    !preg_match('/[A-Za-z]/', $password) ||
-    !preg_match('/[0-9]/', $password)
-) {
-    die("Le mot de passe doit contenir au moins 8 caractères, une lettre et un chiffre.");
-}
 
 try {
 
@@ -51,5 +37,5 @@ try {
 
 } catch (PDOException $e) {
     die("Erreur : " . $e->getMessage()); //debug
-	//die("Erreur lors de l’inscription");
+	//die("Erreur lors de l'inscription");
 }

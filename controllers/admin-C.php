@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../models/vehicles-M.php';
+require_once __DIR__ . '/../toolbox/validators.php';
 
 class AdminController {
 
@@ -94,31 +95,26 @@ class AdminController {
 
             $file = $_FILES['image'];
 
-            // Vérifier erreurs
-            if ($file['error'] === 0) {
-
-                // Taille max 2MB
-                if ($file['size'] <= 2 * 1024 * 1024) {
-
-                    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-                    $allowed = ['jpg', 'jpeg', 'png', 'webp'];
-
-                    if (in_array($ext, $allowed)) {
-
-                        $imageName = uniqid('veh_', true) . '.' . $ext;
-
-                        $target = __DIR__ . '/../uploads/' . $imageName;
-
-                        if (!move_uploaded_file($file['tmp_name'], $target)) {
-                            echo "Erreur upload";
-                            return;
-                        }
-                    }
-                } else {
-                    echo "Fichier trop volumineux";
-                    return;
-                }
+            if ($file['error'] !== 0) {
+                echo "Erreur upload";
+                return;
             }
+
+            if (!isAllowedImage($file['name'], $file['size'])) {
+                echo "Image invalide (format accepté : jpg, jpeg, png, webp ; 2 Mo max)";
+                return;
+            }
+
+            $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+            $imageName = uniqid('veh_', true) . '.' . $ext;
+
+            $target = __DIR__ . '/../uploads/' . $imageName;
+
+            if (!move_uploaded_file($file['tmp_name'], $target)) {
+                echo "Erreur upload";
+                return;
+            }
+
         } else {
 			echo "Fichier manquant";
             return;
@@ -131,13 +127,9 @@ class AdminController {
         $price = $_POST['price'] ?? 0;
         $description = trim($_POST['description'] ?? '');
 
-        if (!in_array($type, ['sale', 'rent'])) {
-            echo "Type invalide";
-            return;
-        }
-
-        if (!is_numeric($price)) {
-            echo "Prix invalide";
+        $errors = validateVehicle($_POST);
+        if ($errors) {
+            echo $errors[0];
             return;
         }
 
@@ -199,13 +191,9 @@ class AdminController {
         $price = $_POST['price'] ?? 0;
         $description = trim($_POST['description'] ?? '');
 
-        if (!in_array($type, ['sale', 'rent'])) {
-            echo "Type invalide";
-            return;
-        }
-
-        if (!is_numeric($price)) {
-            echo "Prix invalide";
+        $errors = validateVehicle($_POST);
+        if ($errors) {
+            echo $errors[0];
             return;
         }
 
@@ -216,31 +204,24 @@ class AdminController {
 
             $file = $_FILES['image'];
 
-            if ($file['error'] === 0) {
+            if ($file['error'] !== 0) {
+                echo "Erreur upload";
+                return;
+            }
 
-                if ($file['size'] <= 2 * 1024 * 1024) {
+            if (!isAllowedImage($file['name'], $file['size'])) {
+                echo "Image invalide (format accepté : jpg, jpeg, png, webp ; 2 Mo max)";
+                return;
+            }
 
-                    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-                    $allowed = ['jpg', 'jpeg', 'png', 'webp'];
+            $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+            $imageName = uniqid('veh_', true) . '.' . $ext;
 
-                    if (in_array($ext, $allowed)) {
+            $target = __DIR__ . '/../uploads/' . $imageName;
 
-                        $imageName = uniqid('veh_', true) . '.' . $ext;
-
-                        $target = __DIR__ . '/../uploads/' . $imageName;
-
-                        if (!move_uploaded_file($file['tmp_name'], $target)) {
-                            echo "Erreur upload";
-                            return;
-                        }
-                    } else {
-                        echo "Format accepté : jpg, jpeg, png, webp";
-                        return;
-                    }
-                } else {
-                    echo "Fichier trop volumineux";
-                    return;
-                }
+            if (!move_uploaded_file($file['tmp_name'], $target)) {
+                echo "Erreur upload";
+                return;
             }
         }
 
@@ -306,6 +287,76 @@ class AdminController {
         }
 
         header("Location: /M-Motors/public/index.php?page=dashboard");
+        exit;
+    }
+
+    // Liste des dossiers déposés
+    public function applications() {
+        $this->checkAdmin();
+
+        require_once __DIR__ . '/../models/applications-M.php';
+
+        $apps = getAllApplications();
+
+        require __DIR__ . '/../views/admin/applications-V.php';
+    }
+
+    // Accepter / refuser un dossier
+    public function updateApplication() {
+        $this->checkAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo "Méthode non autorisée";
+            return;
+        }
+
+        require_once __DIR__ . '/../models/applications-M.php';
+
+        $id = (int)($_POST['id'] ?? 0);
+        $status = $_POST['status'] ?? '';
+
+        if ($id > 0 && in_array($status, ['accepted', 'refused'])) {
+            updateApplicationStatus($id, $status);
+        }
+
+        header("Location: /M-Motors/public/index.php?page=admin_applications");
+        exit;
+    }
+
+    // Téléchargement sécurisé du dossier PDF (réservé admin)
+    public function downloadDossier() {
+        $this->checkAdmin();
+
+        require_once __DIR__ . '/../models/applications-M.php';
+
+        $id = (int)($_GET['id'] ?? 0);
+
+        if ($id <= 0) {
+            http_response_code(400);
+            die("Requête invalide");
+        }
+
+        $app = getApplicationById($id);
+
+        if (!$app || empty($app['document'])) {
+            http_response_code(404);
+            die("Dossier introuvable");
+        }
+
+        // Le nom est généré côté serveur, mais on neutralise tout chemin par sécurité
+        $filename = basename($app['document']);
+        $path = __DIR__ . '/../storage/dossiers/' . $filename;
+
+        if (!is_file($path)) {
+            http_response_code(404);
+            die("Fichier introuvable");
+        }
+
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="' . $filename . '"');
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
         exit;
     }
 }

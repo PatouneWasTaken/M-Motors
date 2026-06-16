@@ -1,21 +1,15 @@
 <?php
 session_start();
 require __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../toolbox/validators.php';
 
-if (!isset($_POST['email'], $_POST['password'])) {
-    die("Tous les champs sont obligatoires");
+$errors = validateLogin($_POST);
+if ($errors) {
+    die($errors[0]);
 }
 
-$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-if (!$email) {
-    die("Email invalide");
-}
-
+$email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
 $password = $_POST['password'];
-
-if (empty($password)) {
-    die("Tous les champs sont obligatoires");
-}
 
 try {
 
