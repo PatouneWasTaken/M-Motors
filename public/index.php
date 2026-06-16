@@ -72,6 +72,18 @@ switch ($page) {
     	$controller->addVehicle();
     	break;
 
+	case 'admin_edit_vehicle':
+    	require_once '../controllers/admin-C.php';
+    	$controller = new AdminController();
+    	$controller->editVehicle();
+    	break;
+
+	case 'admin_delete_vehicle':
+    	require_once '../controllers/admin-C.php';
+    	$controller = new AdminController();
+    	$controller->deleteVehicle();
+    	break;
+
     case 'home':
     default:
         $controller = new VehicleController();

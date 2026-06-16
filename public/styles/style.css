@@ -183,3 +183,70 @@ main {
 .detail-info {
   flex: 1 1 280px;
 }
+
+/* LISTE ADMIN VÉHICULES */
+.admin-vehicles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-vehicle-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+  border: 1px solid #191825;
+  border-radius: 10px;
+  background-color: #EEEBDD;
+}
+
+.admin-vehicle-row .name {
+  font-weight: bold;
+  flex: 1;
+  margin: 0;
+}
+
+.admin-vehicle-row .type,
+.admin-vehicle-row .price {
+  margin: 0;
+}
+
+.admin-vehicle-row .actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.admin-vehicle-row .actions form {
+  margin: 0;
+}
+
+.admin-vehicle-row .thumb {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #191825;
+  flex-shrink: 0;
+}
+
+.edit-btn,
+.delete-btn {
+  color: #EEEBDD !important;
+  font-weight: bold;
+  border: 1px solid #191825;
+  border-radius: 10px;
+  padding: 4px 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.edit-btn {
+  background-color: #191825;
+}
+
+.delete-btn {
+  background-color: #CE1212;
+}

@@ -2,9 +2,21 @@
 
 <section class="admin-vehicles">
 
-<?php foreach ($vehicles as $v): ?>
+<?php foreach ($vehicles as $v):
+
+	$image = "/M-Motors/public/assets/no-photos.png";
+
+	if (
+		!empty($v['photo']) &&
+		file_exists(__DIR__ . '/../../uploads/' . $v['photo'])
+	) {
+		$image = "/M-Motors/uploads/" . e($v['photo']);
+	}
+?>
 
 	<article class="admin-vehicle-row">
+
+		<img class="thumb" src="<?= $image ?>" alt="" loading="lazy">
 
     	<p class="name"><?= e($v['brand'] . ' ' . $v['model']) ?></p>
 
@@ -13,8 +25,12 @@
     	<p class="price"><?= number_format($v['price'], 0, ',', ' ') ?> €</p>
 
     	<p class="actions">
-        	<a href="/M-Motors/public/index.php?page=admin_edit_vehicle&id=<?= (int)$v['id'] ?>">Modifier</a>
-        	<a href="/M-Motors/public/index.php?page=admin_delete_vehicle&id=<?= (int)$v['id'] ?>">Supprimer</a>
+        	<a class="edit-btn" href="/M-Motors/public/index.php?page=admin_edit_vehicle&id=<?= (int)$v['id'] ?>">Modifier</a>
+
+        	<form action="/M-Motors/public/index.php?page=admin_delete_vehicle" method="POST" onsubmit="return confirm('Supprimer ce véhicule ? Les dossiers liés seront aussi supprimés.');">
+            	<input type="hidden" name="id" value="<?= (int)$v['id'] ?>">
+            	<button type="submit" class="delete-btn">Supprimer</button>
+        	</form>
 		</p>
 
 	</article>
