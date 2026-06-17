@@ -309,3 +309,56 @@ main {
   font-weight: bold;
   margin-top: 10px;
 }
+
+/* PAGE CONNEXION / INSCRIPTION */
+.auth-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 24px;
+}
+
+.auth-panel {
+  flex: 1 1 320px;
+  background-color: #fff;
+  border: 1px solid #191825;
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+
+.auth-panel.register {
+  border-top: 4px solid #CE1212;
+}
+
+.auth-panel h2 {
+  margin-top: 0;
+}
+
+.auth-panel form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-panel label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.auth-panel input {
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #191825;
+  border-radius: 6px;
+}
+
+.auth-panel button {
+  margin-top: 16px;
+  padding: 10px;
+  background-color: #CE1212;
+  color: #EEEBDD;
+  font-weight: bold;
+  border: 1px solid #191825;
+  border-radius: 8px;
+  cursor: pointer;
+}

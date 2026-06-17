@@ -27,10 +27,6 @@ switch ($page) {
     	$controller->store();
     	break;
 
-	case 'register':
-		require __DIR__ . '/../views/register-V.php';
-		break;
-
 	case 'login':
 		require __DIR__ . '/../views/login-V.php';
 		break;
