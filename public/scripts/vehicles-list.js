@@ -46,14 +46,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     };
 
-	fetchVehicles();
-
-    //no spam
-    form.addEventListener("input", () => {
+    // Un seul anti-spam partagé : "input" et "change" ne déclenchent
+    // qu'un seul fetch, même quand un <select> émet les deux événements.
+    const scheduleFetch = () => {
         clearTimeout(timeout);
         timeout = setTimeout(fetchVehicles, 300);
-    });
+    };
 
-    form.addEventListener("change", fetchVehicles);
+	fetchVehicles();
+
+    form.addEventListener("input", scheduleFetch);
+    form.addEventListener("change", scheduleFetch);
 
 });

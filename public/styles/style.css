@@ -226,7 +226,9 @@ main {
 .admin-vehicle-row .thumb {
   width: 64px;
   height: 48px;
+  object-fit: cover;
   border-radius: 6px;
+  border: 1px solid #191825;
   flex-shrink: 0;
 }
 
@@ -299,4 +301,11 @@ main {
 .status-refused {
   background-color: #CE1212;
   color: #EEEBDD;
+}
+
+/* MESSAGE D'ERREUR DE FORMULAIRE */
+.form-error {
+  color: #CE1212;
+  font-weight: bold;
+  margin-top: 10px;
 }

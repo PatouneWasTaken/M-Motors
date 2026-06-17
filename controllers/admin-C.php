@@ -193,8 +193,9 @@ class AdminController {
 
         $errors = validateVehicle($_POST);
         if ($errors) {
-            echo $errors[0];
-            return;
+            $_SESSION['edit_error'] = $errors[0];
+            header("Location: /M-Motors/public/index.php?page=admin_edit_vehicle&id=" . $id);
+            exit;
         }
 
         // Image optionnelle : si rien n'est envoyé, on garde la photo actuelle
@@ -205,13 +206,15 @@ class AdminController {
             $file = $_FILES['image'];
 
             if ($file['error'] !== 0) {
-                echo "Erreur upload";
-                return;
+                $_SESSION['edit_error'] = "Erreur upload";
+                header("Location: /M-Motors/public/index.php?page=admin_edit_vehicle&id=" . $id);
+                exit;
             }
 
             if (!isAllowedImage($file['name'], $file['size'])) {
-                echo "Image invalide (format accepté : jpg, jpeg, png, webp ; 2 Mo max)";
-                return;
+                $_SESSION['edit_error'] = "Image invalide (format accepté : jpg, jpeg, png, webp ; 2 Mo max)";
+                header("Location: /M-Motors/public/index.php?page=admin_edit_vehicle&id=" . $id);
+                exit;
             }
 
             $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -220,8 +223,9 @@ class AdminController {
             $target = __DIR__ . '/../uploads/' . $imageName;
 
             if (!move_uploaded_file($file['tmp_name'], $target)) {
-                echo "Erreur upload";
-                return;
+                $_SESSION['edit_error'] = "Erreur upload";
+                header("Location: /M-Motors/public/index.php?page=admin_edit_vehicle&id=" . $id);
+                exit;
             }
         }
 

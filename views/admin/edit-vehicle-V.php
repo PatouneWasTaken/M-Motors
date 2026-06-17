@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . "/../../toolbox/tools.php"; 
 $title = "Modifier un véhicule";
+
+$error = $_SESSION['edit_error'] ?? null;
+unset($_SESSION['edit_error']);
+
 require __DIR__ . "/../components/head.php"
 ?>
 
@@ -38,6 +42,10 @@ require __DIR__ . "/../components/head.php"
 
             	<button>Enregistrer</button>
         	</form>
+
+			<?php if ($error) : ?>
+				<p class="form-error"><?= e($error) ?></p>
+			<?php endif; ?>
 
 			<a href="/M-Motors/public/index.php?page=dashboard" class="btn">← Retour au dashboard</a>
     	</div>

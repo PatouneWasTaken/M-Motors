@@ -1,6 +1,12 @@
 <?php
 require_once __DIR__ . "/../toolbox/tools.php"; 
 $title = "Déposer un dossier";
+
+// Récupère un éventuel message d'erreur (puis le consomme)
+$error = $_SESSION['apply_error'] ?? null;
+$old   = $_SESSION['apply_old'] ?? [];
+unset($_SESSION['apply_error'], $_SESSION['apply_old']);
+
 require __DIR__ . "/components/head.php"
 ?>
 
@@ -17,15 +23,19 @@ require __DIR__ . "/components/head.php"
     <input type="hidden" name="vehicle_id" value="<?= (int)($_GET['vehicle_id'] ?? 0) ?>">
 
     <label>Nom complet :</label>
-    <input type="text" name="name" required>
+    <input type="text" name="name" value="<?= e($old['name'] ?? '') ?>" required>
 
     <label>Email :</label>
-    <input type="email" name="email" required>
+    <input type="email" name="email" value="<?= e($old['email'] ?? '') ?>" required>
 
     <label>Document (PDF, 5 Mo max) :</label>
     <input type="file" name="document" accept="application/pdf" required>
 
     <button type="submit">Envoyer</button>
+
+	<?php if ($error) : ?>
+		<p class="form-error"><?= e($error) ?></p>
+	<?php endif; ?>
 
 </form>
 

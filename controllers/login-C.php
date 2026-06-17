@@ -3,9 +3,17 @@ session_start();
 require __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../toolbox/validators.php';
 
+// En cas d'erreur : on mémorise le message + l'email saisi, et on revient au formulaire
+function loginFail($message, $email = '') {
+    $_SESSION['login_error'] = $message;
+    $_SESSION['login_old'] = ['email' => $email];
+    header("Location: /M-Motors/public/index.php?page=login");
+    exit;
+}
+
 $errors = validateLogin($_POST);
 if ($errors) {
-    die($errors[0]);
+    loginFail($errors[0], trim($_POST['email'] ?? ''));
 }
 
 $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
@@ -30,10 +38,9 @@ try {
         exit;
 
     } else {
-        die("Email ou mot de passe incorrect");
+        loginFail("Email ou mot de passe incorrect", $email);
     }
 
 } catch (PDOException $e) {
-    die("Erreur : " . $e->getMessage()); //debug
-	//die("Erreur lors de la connexion");
+    loginFail("Erreur lors de la connexion");
 }

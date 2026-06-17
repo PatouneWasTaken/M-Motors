@@ -10,7 +10,12 @@ require __DIR__ . "/components/head.php"
 
 <main class="vehicle-detail">
 
-    <h1><?= e($vehicle['brand'] . ' ' . $vehicle['model']) ?></h1>
+    <h1>
+        <?= e($vehicle['brand'] . ' ' . $vehicle['model']) ?>
+        <span class="type">
+            <?= vehicleType($vehicle['type']) === 'Vente' ? 'à vendre' : 'à louer' ?>
+        </span>
+    </h1>
 
     <div class="detail-container">
 
@@ -28,10 +33,6 @@ require __DIR__ . "/components/head.php"
         </div>
 
         <div class="detail-info">
-
-            <p class="type">
-                <?= e(vehicleType($vehicle['type'])) ?>
-            </p>
 
             <p class="price">
                 <?= number_format($vehicle['price'], 0, ',', ' ') ?> €
