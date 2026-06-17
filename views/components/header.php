@@ -40,13 +40,16 @@
     		</a>
 		<?php } ?>
 
-		<?php if (isset($_SESSION['user_id'])) { ?>
+		<?php if (isset($_SESSION['user_id'])) {
+			$initial = mb_strtoupper(mb_substr($_SESSION['user_name'] ?? '', 0, 1));
+			if ($initial === '') { $initial = '?'; }
+		?>
 			<a href="/M-Motors/public/index.php?page=account" class='profile'>
-				<img src="/M-Motors/public/assets/user.png" alt="Mon compte">
+				<span class="profile-initial"><?= e($initial) ?></span>
 			</a>
 		<?php } else { ?>
-			<a href="/M-Motors/public/index.php?page=login" class="btn">
-				Connexion
+			<a href="/M-Motors/public/index.php?page=login" class='profile'>
+				<img src="/M-Motors/public/assets/user.png" alt="Connexion">
 			</a>
 		<?php } ?>
 
