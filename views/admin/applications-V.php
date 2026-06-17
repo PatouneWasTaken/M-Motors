@@ -58,6 +58,10 @@ require __DIR__ . "/../components/head.php"
 						<input type="hidden" name="status" value="refused">
 						<button type="submit" class="delete-btn">Refuser</button>
 					</form>
+					<form action="/M-Motors/public/index.php?page=admin_delete_application" method="POST" onsubmit="return confirm('Supprimer définitivement ce dossier ? Le PDF sera aussi effacé.');">
+						<input type="hidden" name="id" value="<?= (int)$a['id'] ?>">
+						<button type="submit" class="remove-btn">Supprimer</button>
+					</form>
 				</td>
 			</tr>
 			<?php endforeach; ?>

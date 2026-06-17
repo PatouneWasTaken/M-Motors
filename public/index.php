@@ -40,12 +40,23 @@ switch ($page) {
     	$controller->asyncList();
     	break;
 
-	// Espace utilisateur : ses dossiers déposés
+	// Espace utilisateur : page "Mon compte"
 	case 'account':
-	case 'my_applications':
-		require_once '../models/my-applications-M.php';
-		$controller = new VehicleController();
-		$controller->myApplications();
+		require_once '../controllers/account-C.php';
+		$controller = new AccountController();
+		$controller->show();
+		break;
+
+	case 'account_update_profile':
+		require_once '../controllers/account-C.php';
+		$controller = new AccountController();
+		$controller->updateProfile();
+		break;
+
+	case 'account_update_password':
+		require_once '../controllers/account-C.php';
+		$controller = new AccountController();
+		$controller->updatePassword();
 		break;
 
 	// Dashboard administrateur (alias : admin)
@@ -90,6 +101,12 @@ switch ($page) {
     	require_once '../controllers/admin-C.php';
     	$controller = new AdminController();
     	$controller->updateApplication();
+    	break;
+
+	case 'admin_delete_application':
+    	require_once '../controllers/admin-C.php';
+    	$controller = new AdminController();
+    	$controller->deleteApplication();
     	break;
 
 	case 'admin_download_dossier':

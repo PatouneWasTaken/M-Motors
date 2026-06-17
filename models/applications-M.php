@@ -47,3 +47,12 @@ function updateApplicationStatus($id, $status) {
         'id' => (int)$id,
     ]);
 }
+
+function deleteApplication($id) {
+    global $pdo;
+
+    $sql = "DELETE FROM applications WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+
+    return $stmt->execute(['id' => (int)$id]);
+}

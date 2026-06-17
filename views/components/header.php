@@ -44,9 +44,6 @@
 			<a href="/M-Motors/public/index.php?page=account" class='profile'>
 				<img src="/M-Motors/public/assets/user.png" alt="Mon compte">
 			</a>
-			<a href="/M-Motors/public/index.php?page=logout" class="btn">
-				Déconnexion
-			</a>
 		<?php } else { ?>
 			<a href="/M-Motors/public/index.php?page=login" class="btn">
 				Connexion

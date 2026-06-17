@@ -2,11 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const BASE = "/M-Motors/public/index.php";
 
-    const addForm   = document.querySelector("#addVehicleForm");
-    const container = document.querySelector("#admin-vehicles-container");
-    const message   = document.querySelector("#form-message");
+    const addForm     = document.querySelector("#addVehicleForm");
+    const filtersForm = document.querySelector("#filters");
+    const container   = document.querySelector("#admin-vehicles-container");
+    const message     = document.querySelector("#form-message");
 
     if (!container) return;
+
+    let timeout = null;
 
     // Animation d'apparition des cartes
     const animateCards = () => {
@@ -14,10 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
             .forEach((card, i) => setTimeout(() => card.classList.add("show"), i * 100));
     };
 
-    // Charge / rafraîchit la liste des véhicules
+    // Charge / rafraîchit la liste des véhicules (en tenant compte des filtres)
     const loadVehicles = () => {
+        let url = `${BASE}?page=admin_vehicles`;
+
+        if (filtersForm) {
+            const params = new URLSearchParams(new FormData(filtersForm));
+            url += "&" + params.toString();
+        }
+
         container.classList.add("fade-out");
-        fetch(`${BASE}?page=admin_vehicles`)
+
+        fetch(url)
             .then(res => res.text())
             .then(html => {
                 container.innerHTML = html;
@@ -30,6 +41,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 container.classList.remove("fade-out");
             });
     };
+
+    // Anti-spam partagé pour les filtres
+    const scheduleLoad = () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(loadVehicles, 300);
+    };
+
+    if (filtersForm) {
+        filtersForm.addEventListener("input", scheduleLoad);
+        filtersForm.addEventListener("change", scheduleLoad);
+    }
 
     // Ajout d'un véhicule (AJAX)
     if (addForm) {

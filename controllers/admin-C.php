@@ -48,13 +48,20 @@ class AdminController {
     public function adminVehicles() {
         $this->checkAdmin();
 
-        $page = $_GET['page_num'] ?? 1;
-        $page = is_numeric($page) ? (int)$page : 1;
+        $type = $_GET['type'] ?? null;
+        if (!in_array($type, ['sale', 'rent'])) {
+            $type = null;
+        }
 
+        $min = is_numeric($_GET['min'] ?? null) ? (int)$_GET['min'] : null;
+        $max = is_numeric($_GET['max'] ?? null) ? (int)$_GET['max'] : null;
+        $brand = !empty($_GET['brand']) ? $_GET['brand'] : null;
+
+        $page = is_numeric($_GET['page_num'] ?? null) ? (int)$_GET['page_num'] : 1;
         $limit = 10;
 
-        $vehicles = getVehicles(null, null, null, null, $page, $limit);
-        $total = countVehicles();
+        $vehicles = getVehicles($type, $min, $max, $brand, $page, $limit);
+        $total = countVehicles($type, $min, $max, $brand);
         $totalPages = ceil($total / $limit);
 
         require __DIR__ . '/../views/admin/vehicles-V.php';
@@ -322,6 +329,41 @@ class AdminController {
 
         if ($id > 0 && in_array($status, ['accepted', 'refused'])) {
             updateApplicationStatus($id, $status);
+        }
+
+        header("Location: /M-Motors/public/index.php?page=admin_applications");
+        exit;
+    }
+
+    // Supprimer un dossier (et son PDF)
+    public function deleteApplication() {
+        $this->checkAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo "Méthode non autorisée";
+            return;
+        }
+
+        require_once __DIR__ . '/../models/applications-M.php';
+
+        $id = (int)($_POST['id'] ?? 0);
+
+        if ($id <= 0) {
+            header("Location: /M-Motors/public/index.php?page=admin_applications");
+            exit;
+        }
+
+        // On récupère le dossier avant suppression pour effacer aussi son PDF
+        $app = getApplicationById($id);
+
+        deleteApplication($id);
+
+        if ($app && !empty($app['document'])) {
+            $path = __DIR__ . '/../storage/dossiers/' . basename($app['document']);
+            if (is_file($path)) {
+                unlink($path);
+            }
         }
 
         header("Location: /M-Motors/public/index.php?page=admin_applications");

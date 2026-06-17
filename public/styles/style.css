@@ -19,7 +19,9 @@ header, main, footer {
 }
 
 body {
-	height: 100vh;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 header {
@@ -74,7 +76,7 @@ footer a {
 }
 
 main {
-	min-height: 84vh;
+	flex: 1 0 auto;
 	background-color: #EEEBDD;
 }
 
@@ -281,6 +283,16 @@ main {
   margin: 0;
 }
 
+.dossiers .remove-btn {
+  background-color: transparent;
+  color: #CE1212;
+  font-weight: bold;
+  border: 1px solid #CE1212;
+  border-radius: 10px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
 .status {
   font-weight: bold;
   padding: 2px 8px;
@@ -311,28 +323,72 @@ main {
 }
 
 /* PAGE CONNEXION / INSCRIPTION */
+main.auth {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .auth-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+/* Bloc des deux formulaires : centré verticalement, hauts alignés */
+.auth-forms {
+  align-self: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  justify-content: center;
   align-items: flex-start;
+  gap: 64px;
   padding: 24px;
 }
 
 .auth-panel {
-  flex: 1 1 320px;
-  background-color: #fff;
-  border: 1px solid #191825;
-  border-radius: 10px;
+  width: 100%;
+  max-width: 360px;
   padding: 20px 24px;
-}
-
-.auth-panel.register {
-  border-top: 4px solid #CE1212;
 }
 
 .auth-panel h2 {
   margin-top: 0;
+}
+
+/* Colonne logo : tout le tiers droit, pleine hauteur */
+.auth-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  padding: 32px 24px;
+  background-color: #e4dfcb;
+}
+
+.auth-brand img {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+}
+
+.auth-brand .brand-name {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #CE1212;
+}
+
+@media (max-width: 900px) {
+  .auth-grid {
+    grid-template-columns: 1fr;
+  }
+  .auth-brand {
+    min-height: 240px;
+  }
 }
 
 .auth-panel form {
@@ -355,6 +411,41 @@ main {
 .auth-panel button {
   margin-top: 16px;
   padding: 10px;
+  background-color: #CE1212;
+  color: #EEEBDD;
+  font-weight: bold;
+  border: 1px solid #191825;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* PAGE MON COMPTE */
+.account {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-left {
+  padding: 24px;
+}
+
+.account-applications {
+  margin: 16px 0;
+}
+
+.form-success {
+  color: #2e9e4f;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.logout-form {
+  margin-top: 24px;
+}
+
+.logout-form button {
+  padding: 8px 16px;
   background-color: #CE1212;
   color: #EEEBDD;
   font-weight: bold;

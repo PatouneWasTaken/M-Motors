@@ -16,7 +16,6 @@ require __DIR__ . "/../components/head.php"
 
     	<!-- add form -->
     	<div class="admin-form">
-        	<h2>Ajouter un véhicule</h2>
 
         	<form id="addVehicleForm" enctype="multipart/form-data">
             	<input name="brand" placeholder="Marque" required>
@@ -34,7 +33,7 @@ require __DIR__ . "/../components/head.php"
 
 				<textarea id="description" name="description" placeholder="Description.." rows="4" cols="50" required></textarea>
 
-            	<button>Ajouter</button>
+            	<button>Ajouter un véhicule</button>
         	</form>
 
         	<p id="form-message"></p>

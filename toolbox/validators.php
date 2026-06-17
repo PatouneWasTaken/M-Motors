@@ -118,3 +118,10 @@ function isWithinMaxSize(int $size, int $max): bool {
 function isPdfMimeType(string $mimeType): bool {
     return $mimeType === 'application/pdf';
 }
+
+/** Vrai si le mot de passe fait 8+ caractères et contient au moins une lettre et un chiffre. */
+function isStrongPassword(string $password): bool {
+    return strlen($password) >= 8
+        && preg_match('/[A-Za-z]/', $password)
+        && preg_match('/[0-9]/', $password);
+}
