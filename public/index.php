@@ -31,6 +31,14 @@ switch ($page) {
 		require __DIR__ . '/../views/login-V.php';
 		break;
 
+	case 'about':
+		require __DIR__ . '/../views/about-V.php';
+		break;
+
+	case 'legal':
+		require __DIR__ . '/../views/legal-V.php';
+		break;
+
 	case 'logout':
 		require_once '../controllers/logout-C.php';
 		break;

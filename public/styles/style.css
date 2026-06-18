@@ -516,3 +516,74 @@ main.auth {
   border-radius: 8px;
   cursor: pointer;
 }
+
+/* FOOTER : liens, copyright, crédits + pages de contenu */
+footer {
+  color: #EEEBDD;
+  text-align: center;
+  padding: 12px 16px;
+}
+
+.footer-links a {
+  font-weight: bold;
+}
+
+.copyright {
+  margin: 8px 0;
+}
+
+.footer-credits {
+  font-size: 0.75em;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.content-page {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 12px;
+}
+
+.content-page-body {
+  line-height: 1.6;
+  background-color: #f7f4ea;
+  padding: 24px 32px;
+  border-radius: 12px;
+}
+
+.side-logo {
+  width: 200px;
+  height: auto;
+  justify-self: center;
+}
+
+@media (max-width: 900px) {
+  .content-page {
+    grid-template-columns: 1fr;
+  }
+  .side-logo {
+    display: none;
+  }
+}
+
+.content-page h2 {
+  margin-top: 28px;
+}
+
+.content-page .contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.content-page .contact-list li {
+  margin: 6px 0;
+}
+
+.content-page .note {
+  margin-top: 28px;
+  font-size: 0.9em;
+  font-style: italic;
+  color: #555;
+}
