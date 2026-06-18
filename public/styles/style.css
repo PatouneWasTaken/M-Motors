@@ -587,3 +587,128 @@ footer {
   font-style: italic;
   color: #555;
 }
+
+/* ============================================================
+   MOBILE — adaptations sous 768px (desktop inchangé au-dessus)
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* --- Header : réduit, centré, retour à la ligne si besoin --- */
+  header {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  header a {
+    font-size: 1.6rem;
+    margin: 0 10px;
+    padding: 4px 0;
+  }
+  header img {
+    width: 40px;
+    height: 40px;
+  }
+  .left-nav {
+    align-items: center;
+  }
+  .left-nav nav {
+    margin-left: 6px;
+  }
+
+  /* --- Cartes catalogue : empilées verticalement --- */
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 14px;
+  }
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin: 0;
+  }
+  .card-content {
+    width: auto;
+    padding: 16px;
+  }
+  .card-cta {
+    width: auto;
+    height: auto;
+    margin: 0;
+    flex-direction: row;
+    gap: 12px;
+    padding: 14px;
+    font-size: 1.3rem;
+    border-left: none;
+    border-top: 1px solid #191825;
+    border-radius: 0;
+  }
+  .card-cta .arrow {
+    font-size: 1.4em;
+  }
+
+  /* --- Filtres : empilés, pleine largeur --- */
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .filters input,
+  .filters select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+  }
+
+  /* --- Lignes véhicules du dashboard : passage à la ligne --- */
+  .admin-vehicle-row {
+    flex-wrap: wrap;
+  }
+  .admin-vehicle-row .info {
+    flex-basis: 100%;
+  }
+
+  /* --- Formulaires admin (ajout / modification) : empilés --- */
+  .admin-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .admin-form input,
+  .admin-form select,
+  .admin-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* --- Formulaire de dépôt de dossier : pleine largeur --- */
+  .apply input,
+  .apply select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* --- Tableau des dossiers : défilement horizontal --- */
+  .dossiers {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* --- Détail véhicule : marges resserrées --- */
+  .detail-container {
+    gap: 16px;
+  }
+
+  /* --- Connexion / inscription : espacement réduit --- */
+  .auth-forms {
+    gap: 32px;
+    padding: 16px;
+  }
+
+  /* --- Mon compte : padding réduit --- */
+  .account-left {
+    padding: 16px;
+  }
+}
