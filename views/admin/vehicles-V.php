@@ -18,11 +18,16 @@
 
 		<img class="thumb" src="<?= $image ?>" alt="" loading="lazy">
 
-    	<p class="name"><?= e($v['brand'] . ' ' . $v['model']) ?></p>
+    	<div class="info">
+        	<p class="name"><?= e($v['brand'] . ' ' . $v['model']) ?></p>
+        	<p class="description"><?= e(preview($v['description'] ?? '')) ?></p>
+    	</div>
 
     	<p class="type"><?= e(vehicleType($v['type'])) ?></p>
 
-    	<p class="price"><?= number_format($v['price'], 0, ',', ' ') ?> €</p>
+    	<p class="price">
+        	<?= number_format($v['price'], 0, ',', ' ') ?> €<?= $v['type'] === 'rent' ? ' /jour' : '' ?>
+    	</p>
 
     	<p class="actions">
         	<a class="edit-btn" href="/M-Motors/public/index.php?page=admin_edit_vehicle&id=<?= (int)$v['id'] ?>">Modifier</a>

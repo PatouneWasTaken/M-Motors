@@ -201,6 +201,10 @@ main {
 }
 
 /* LISTE ADMIN VÉHICULES */
+.admin-form {
+  margin: 40px 0;
+}
+
 .admin-vehicles {
   display: flex;
   flex-direction: column;
@@ -212,15 +216,24 @@ main {
   align-items: center;
   gap: 16px;
   padding: 10px 14px;
-  border: 1px solid #191825;
-  border-radius: 10px;
+  border-top: 1px solid #191825;
   background-color: #EEEBDD;
+}
+
+.admin-vehicle-row .info {
+  flex: 1;
+  min-width: 0;
 }
 
 .admin-vehicle-row .name {
   font-weight: bold;
-  flex: 1;
   margin: 0;
+}
+
+.admin-vehicle-row .description {
+  margin: 4px 0 0 0;
+  font-size: 0.9em;
+  color: #444;
 }
 
 .admin-vehicle-row .type,

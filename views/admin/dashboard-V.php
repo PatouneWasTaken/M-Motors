@@ -10,8 +10,6 @@ require __DIR__ . "/../components/head.php"
 
 <main>
 
-	<?php require_once __DIR__ . "/../components/filters.php"; ?>
-
 	<section class="admin-grid">
 
     	<!-- add form -->
@@ -29,7 +27,6 @@ require __DIR__ . "/../components/head.php"
             	<input name="price" type="number" placeholder="Prix" required>
 
             	<input type="file" name="image" accept="image/*" onchange="previewImage(event)" required>
-				<img id="preview" style="max-width:200px; display:none;">
 
 				<textarea id="description" name="description" placeholder="Description.." rows="4" cols="50" required></textarea>
 
@@ -37,7 +34,13 @@ require __DIR__ . "/../components/head.php"
         	</form>
 
         	<p id="form-message"></p>
+
+			<!-- aperçu de l'image, sous le formulaire -->
+			<img id="preview" style="max-width:200px; display:none;">
     	</div>
+
+    	<!-- filtres -->
+    	<?php require_once __DIR__ . "/../components/filters.php"; ?>
 
     	<!-- liste -->
         <div class="admin-list" id="admin-vehicles-container"></div>

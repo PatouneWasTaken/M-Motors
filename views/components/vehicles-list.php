@@ -30,7 +30,7 @@
 				</h2>
 
 				<p class="price">
-                    <?= number_format($vehicle['price'], 0, ',', ' ') ?> €
+                    <?= number_format($vehicle['price'], 0, ',', ' ') ?> €<?= $vehicle['type'] === 'rent' ? ' /jour' : '' ?>
                 </p>
 
                 <p class="description">
