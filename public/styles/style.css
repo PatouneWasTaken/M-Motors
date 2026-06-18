@@ -119,10 +119,12 @@ main {
 .card img {
 	width: 300px;
 	height: 169px;
+	flex-shrink: 0;
+	margin: 16px;
 }
 
 .card-content {
-	width: 80vw;
+	width: 65vw;
 	padding: 24px;
 }
 
@@ -135,18 +137,39 @@ main {
 	font-size: large;
 }
 
-.details-line {
-	display: block;
-	width: 100%;
-	text-align: end;
+.card-cta {
+	width: 169px;
+	height: 169px;
+	flex-shrink: 0;
+	margin: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	text-align: center;
+	color: #EEEBDD !important;
+	font-weight: bold;
+	font-size: 1.8rem;
+	background-color: #CE1212;
+	border-left: 1px solid #191825;
+	border-radius: 8px;
+	text-decoration: none;
 }
-.details-btn {
+
+.card-cta .arrow {
+	font-size: 1.6em;
+	line-height: 1;
+}
+.btn-primary {
+	display: inline-block;
 	color: #EEEBDD !important;
 	font-weight: bold;
 	border: 1px solid #191825;
 	border-radius: 10px;
 	background-color: #CE1212;
-	padding: 4px 6px;
+	padding: 6px 12px;
+	text-decoration: none;
 }
 
 /* ANIMATIONS */
@@ -198,6 +221,10 @@ main {
 
 .detail-info {
   flex: 1 1 280px;
+}
+
+.vehicle-detail .btn {
+  font-weight: bold;
 }
 
 /* LISTE ADMIN VÉHICULES */

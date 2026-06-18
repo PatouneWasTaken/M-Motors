@@ -37,13 +37,13 @@
                     <?= e(preview($vehicle['description'] ?? '')) ?>
                 </p>
 
-				<span class="details-line">
-                	<a class="details-btn" href="/M-Motors/public/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?>">
-                    	Voir détails
-                	</a>
-				</span>
-
             </div>
+
+            <a class="card-cta" href="/M-Motors/public/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?>">
+                <span>Plus d'infos</span>
+                <span class="arrow">→</span>
+            </a>
+
         </article>
 
         <?php endforeach; ?>

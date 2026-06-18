@@ -10,6 +10,8 @@ require __DIR__ . "/components/head.php"
 
 <main class="vehicle-detail">
 
+    <a href="/M-Motors/public/index.php" class="btn">← Retour au catalogue</a>
+
     <h1>
         <?= e($vehicle['brand'] . ' ' . $vehicle['model']) ?>
         <span class="type">
@@ -35,7 +37,7 @@ require __DIR__ . "/components/head.php"
         <div class="detail-info">
 
             <p class="price">
-                <?= number_format($vehicle['price'], 0, ',', ' ') ?> €
+                <?= number_format($vehicle['price'], 0, ',', ' ') ?> €<?= $vehicle['type'] === 'rent' ? ' /jour' : '' ?>
             </p>
 
             <p class="description">
@@ -43,11 +45,11 @@ require __DIR__ . "/components/head.php"
             </p>
 
 			<?php if (isset($_SESSION['user_id'])) : ?>
-    		<a class="submit-btn" href="/M-Motors/public/index.php?page=apply&vehicle_id=<?= (int)$vehicle['id'] ?>">
+    		<a class="btn-primary" href="/M-Motors/public/index.php?page=apply&vehicle_id=<?= (int)$vehicle['id'] ?>">
        			Déposer un dossier
     		</a>
 			<?php else : ?>
-			<a class="login-btn" href="/M-Motors/public/index.php?page=login">
+			<a class="btn-primary" href="/M-Motors/public/index.php?page=login">
         		Connectez-vous pour déposer un dossier
    			 </a>
 			<?php endif; ?>
@@ -55,8 +57,6 @@ require __DIR__ . "/components/head.php"
         </div>
 
     </div>
-
-    <a href="/M-Motors/public/index.php" class="btn">← Retour</a>
 
 </main>
 
