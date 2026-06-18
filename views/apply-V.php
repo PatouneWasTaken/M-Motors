@@ -7,6 +7,14 @@ $error = $_SESSION['apply_error'] ?? null;
 $old   = $_SESSION['apply_old'] ?? [];
 unset($_SESSION['apply_error'], $_SESSION['apply_old']);
 
+// Filtres actifs propagés depuis la fiche détail (pour les conserver au retour)
+$filterQs = http_build_query(array_filter([
+    'type'  => $_GET['type']  ?? '',
+    'min'   => $_GET['min']   ?? '',
+    'max'   => $_GET['max']   ?? '',
+    'brand' => $_GET['brand'] ?? '',
+]));
+
 require __DIR__ . "/components/head.php"
 ?>
 
@@ -14,7 +22,9 @@ require __DIR__ . "/components/head.php"
 
 <?php require_once __DIR__ . "/components/header.php"; ?>
 
-<main>
+<main class="apply">
+
+	<a href="/M-Motors/public/index.php?page=vehicle&id=<?= (int)($_GET['vehicle_id'] ?? 0) ?><?= $filterQs ? '&' . $filterQs : '' ?>" class="btn">← Retour au véhicule</a>
 
 <h1>Déposer un dossier</h1>
 

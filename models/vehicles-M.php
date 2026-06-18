@@ -101,14 +101,14 @@ function countVehicles($type = null, $min = null, $max = null, $brand = null) {
 
     return $stmt->fetchColumn();
 }
-function updateVehicle($id, $brand, $model, $type, $price, $description, $photo = null) {
+function updateVehicle($id, $brand, $model, $type, $price, $description, $kms, $photo = null) {
     global $pdo;
 
     // Si une nouvelle photo est fournie on la met à jour, sinon on garde l'ancienne
     if ($photo !== null) {
         $sql = "UPDATE vehicles
                 SET brand = :brand, model = :model, type = :type,
-                    price = :price, description = :description, photo = :photo
+                    price = :price, description = :description, kms = :kms, photo = :photo
                 WHERE id = :id";
         $params = [
             'brand' => $brand,
@@ -116,13 +116,14 @@ function updateVehicle($id, $brand, $model, $type, $price, $description, $photo 
             'type' => $type,
             'price' => (int)$price,
             'description' => $description,
+            'kms' => (int)$kms,
             'photo' => $photo,
             'id' => (int)$id,
         ];
     } else {
         $sql = "UPDATE vehicles
                 SET brand = :brand, model = :model, type = :type,
-                    price = :price, description = :description
+                    price = :price, description = :description, kms = :kms
                 WHERE id = :id";
         $params = [
             'brand' => $brand,
@@ -130,6 +131,7 @@ function updateVehicle($id, $brand, $model, $type, $price, $description, $photo 
             'type' => $type,
             'price' => (int)$price,
             'description' => $description,
+            'kms' => (int)$kms,
             'id' => (int)$id,
         ];
     }

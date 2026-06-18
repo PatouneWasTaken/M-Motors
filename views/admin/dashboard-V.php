@@ -19,6 +19,8 @@ require __DIR__ . "/../components/head.php"
             	<input name="brand" placeholder="Marque" required>
 				<input name="model" placeholder="Model" required>
 
+            	<input name="kms" type="number" placeholder="Kilométrage" min="0" required>
+
             	<select name="type">
                 	<option value="sale">Vente</option>
                 	<option value="rent">Location</option>
@@ -40,7 +42,7 @@ require __DIR__ . "/../components/head.php"
     	</div>
 
     	<!-- filtres -->
-    	<?php require_once __DIR__ . "/../components/filters.php"; ?>
+    	<?php $showTypeFilter = true; require_once __DIR__ . "/../components/filters.php"; ?>
 
     	<!-- liste -->
         <div class="admin-list" id="admin-vehicles-container"></div>

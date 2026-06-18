@@ -1,5 +1,16 @@
 <?php require_once __DIR__ . "/../../toolbox/tools.php"; ?>
 
+<?php
+    // Filtres actifs : on les propage dans le lien vers la fiche détail
+    // pour pouvoir les restaurer au retour vers le catalogue.
+    $filterQs = http_build_query(array_filter([
+        'type'  => $_GET['type']  ?? '',
+        'min'   => $_GET['min']   ?? '',
+        'max'   => $_GET['max']   ?? '',
+        'brand' => $_GET['brand'] ?? '',
+    ]));
+?>
+
 <?php if (empty($vehicles)) : ?>
     <p class="empty">Aucun véhicule trouvé.</p>
 <?php else : ?>
@@ -33,13 +44,13 @@
                     <?= number_format($vehicle['price'], 0, ',', ' ') ?> €<?= $vehicle['type'] === 'rent' ? ' /jour' : '' ?>
                 </p>
 
-                <p class="description">
-                    <?= e(preview($vehicle['description'] ?? '')) ?>
+                <p class="kms">
+                    <?= number_format($vehicle['kms'], 0, ',', ' ') ?> Kms
                 </p>
 
             </div>
 
-            <a class="card-cta" href="/M-Motors/public/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?>">
+            <a class="card-cta" href="/M-Motors/public/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?><?= $filterQs ? '&' . $filterQs : '' ?>">
                 <span>Plus d'infos</span>
                 <span class="arrow">→</span>
             </a>

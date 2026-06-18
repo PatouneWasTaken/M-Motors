@@ -23,6 +23,8 @@
         	<p class="description"><?= e(preview($v['description'] ?? '')) ?></p>
     	</div>
 
+    	<p class="kms"><?= number_format($v['kms'], 0, ',', ' ') ?> Kms</p>
+
     	<p class="type"><?= e(vehicleType($v['type'])) ?></p>
 
     	<p class="price">

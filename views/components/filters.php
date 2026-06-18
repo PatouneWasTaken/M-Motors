@@ -7,12 +7,15 @@
 
 	<form class="filters" id="filters">
 
-        <?php if ($currentType): ?>
+        <?php if (!empty($showTypeFilter)): ?>
+            <select name="type">
+                <option value="">Tous</option>
+                <option value="sale" <?= ($_GET['type'] ?? '') === 'sale' ? 'selected' : '' ?>>Vente</option>
+                <option value="rent" <?= ($_GET['type'] ?? '') === 'rent' ? 'selected' : '' ?>>Location</option>
+            </select>
+        <?php elseif ($currentType): ?>
             <input type="hidden" name="type" value="<?= e($currentType) ?>">
         <?php endif; ?>
-
-        <input type="number" name="min" placeholder="Prix min" value="<?= e($min) ?>">
-        <input type="number" name="max" placeholder="Prix max" value="<?= e($max) ?>">
 
 		<select name="brand">
         	<option value="">Toutes marques</option>
@@ -23,6 +26,9 @@
             </option>
         	<?php endforeach; ?>
     	</select>
+
+        <input type="number" name="min" placeholder="Prix min" value="<?= e($min) ?>">
+        <input type="number" name="max" placeholder="Prix max" value="<?= e($max) ?>">
 
     </form>
 </div>

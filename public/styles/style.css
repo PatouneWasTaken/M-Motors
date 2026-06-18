@@ -227,6 +227,14 @@ main {
   font-weight: bold;
 }
 
+.edit-vehicle .btn {
+  font-weight: bold;
+}
+
+.apply .btn {
+  font-weight: bold;
+}
+
 /* LISTE ADMIN VÉHICULES */
 .admin-form {
   margin: 40px 0;
@@ -264,7 +272,8 @@ main {
 }
 
 .admin-vehicle-row .type,
-.admin-vehicle-row .price {
+.admin-vehicle-row .price,
+.admin-vehicle-row .kms {
   margin: 0;
 }
 

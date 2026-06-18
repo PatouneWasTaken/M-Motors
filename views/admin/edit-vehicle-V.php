@@ -12,17 +12,20 @@ require __DIR__ . "/../components/head.php"
 
 <?php require_once __DIR__ . "/../components/header.php"; ?>
 
-<main>
+<main class="edit-vehicle">
+
+	<a href="/M-Motors/public/index.php?page=dashboard" class="btn">← Retour au dashboard</a>
 
 	<section class="admin-grid">
 
     	<div class="admin-form">
-        	<h2>Modifier un véhicule</h2>
 
         	<form action="/M-Motors/public/index.php?page=admin_edit_vehicle&id=<?= (int)$vehicle['id'] ?>" method="POST" enctype="multipart/form-data">
 
             	<input name="brand" placeholder="Marque" value="<?= e($vehicle['brand']) ?>" required>
 				<input name="model" placeholder="Model" value="<?= e($vehicle['model']) ?>" required>
+
+            	<input name="kms" type="number" placeholder="Kilométrage" min="0" value="<?= (int)$vehicle['kms'] ?>" required>
 
             	<select name="type">
                 	<option value="sale" <?= $vehicle['type'] === 'sale' ? 'selected' : '' ?>>Vente</option>
@@ -38,6 +41,8 @@ require __DIR__ . "/../components/head.php"
 				<img id="preview" style="max-width:200px; display:none;">
 				<small>Laisser vide pour conserver la photo actuelle.</small>
 
+				<br>
+
 				<textarea id="description" name="description" placeholder="Description.." rows="4" cols="50" required><?= e($vehicle['description']) ?></textarea>
 
             	<button>Enregistrer</button>
@@ -47,7 +52,6 @@ require __DIR__ . "/../components/head.php"
 				<p class="form-error"><?= e($error) ?></p>
 			<?php endif; ?>
 
-			<a href="/M-Motors/public/index.php?page=dashboard" class="btn">← Retour au dashboard</a>
     	</div>
 
 	</section>

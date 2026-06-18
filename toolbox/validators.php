@@ -70,6 +70,11 @@ function validateVehicle(array $data): array {
         $errors[] = "Prix invalide";
     }
 
+    $kms = $data['kms'] ?? '';
+    if (!is_numeric($kms) || (int)$kms < 0) {
+        $errors[] = "Kilométrage invalide";
+    }
+
     return $errors;
 }
 

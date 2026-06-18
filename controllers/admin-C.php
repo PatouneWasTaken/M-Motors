@@ -147,8 +147,8 @@ class AdminController {
         }
 
 		// SQL — entry_by = id de l'admin connecté (colonne NOT NULL + clé étrangère)
-        $sql = "INSERT INTO vehicles (brand, model, type, price, photo, description, entry_by)
-                VALUES (:brand, :model, :type, :price, :photo, :description, :entry_by)";
+        $sql = "INSERT INTO vehicles (brand, model, type, price, photo, description, kms, entry_by)
+                VALUES (:brand, :model, :type, :price, :photo, :description, :kms, :entry_by)";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
@@ -158,6 +158,7 @@ class AdminController {
             'price' => (int)$price,
             'photo' => $imageName,
             'description' => $description,
+            'kms' => (int)($_POST['kms'] ?? 0),
             'entry_by' => $_SESSION['user_id'],
         ]);
 
@@ -247,7 +248,7 @@ class AdminController {
             }
         }
 
-        updateVehicle($id, $brand, $model, $type, $price, $description, $imageName);
+        updateVehicle($id, $brand, $model, $type, $price, $description, (int)($_POST['kms'] ?? 0), $imageName);
 
         header("Location: /M-Motors/public/index.php?page=dashboard");
         exit;

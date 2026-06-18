@@ -10,7 +10,15 @@ require __DIR__ . "/components/head.php"
 
 <main class="vehicle-detail">
 
-    <a href="/M-Motors/public/index.php" class="btn">← Retour au catalogue</a>
+    <?php
+        $backQs = http_build_query(array_filter([
+            'type'  => $_GET['type']  ?? '',
+            'min'   => $_GET['min']   ?? '',
+            'max'   => $_GET['max']   ?? '',
+            'brand' => $_GET['brand'] ?? '',
+        ]));
+    ?>
+    <a href="/M-Motors/public/index.php<?= $backQs ? '?' . $backQs : '' ?>" class="btn">← Retour au catalogue</a>
 
     <h1>
         <?= e($vehicle['brand'] . ' ' . $vehicle['model']) ?>
@@ -40,12 +48,16 @@ require __DIR__ . "/components/head.php"
                 <?= number_format($vehicle['price'], 0, ',', ' ') ?> €<?= $vehicle['type'] === 'rent' ? ' /jour' : '' ?>
             </p>
 
+            <p class="kms">
+                <?= number_format($vehicle['kms'], 0, ',', ' ') ?> Kms
+            </p>
+
             <p class="description">
                 <?= nl2br(e($vehicle['description'])) ?>
             </p>
 
 			<?php if (isset($_SESSION['user_id'])) : ?>
-    		<a class="btn-primary" href="/M-Motors/public/index.php?page=apply&vehicle_id=<?= (int)$vehicle['id'] ?>">
+    		<a class="btn-primary" href="/M-Motors/public/index.php?page=apply&vehicle_id=<?= (int)$vehicle['id'] ?><?= $backQs ? '&' . $backQs : '' ?>">
        			Déposer un dossier
     		</a>
 			<?php else : ?>
