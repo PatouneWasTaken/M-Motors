@@ -235,6 +235,10 @@ main {
   font-weight: bold;
 }
 
+.applications .btn {
+  font-weight: bold;
+}
+
 /* LISTE ADMIN VÉHICULES */
 .admin-form {
   margin: 40px 0;

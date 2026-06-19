@@ -8,9 +8,9 @@ require __DIR__ . "/../components/head.php"
 
 <?php require_once __DIR__ . "/../components/header.php"; ?>
 
-<main>
+<main class="applications">
 
-	<h1>Dossiers déposés</h1>
+	<a href="/index.php?page=dashboard" class="btn">← Retour au dashboard</a>
 
 	<?php if (empty($apps)) : ?>
 
@@ -69,8 +69,6 @@ require __DIR__ . "/../components/head.php"
 	</table>
 
 	<?php endif; ?>
-
-	<a href="/index.php?page=dashboard" class="btn">← Retour au dashboard</a>
 
 </main>
 
