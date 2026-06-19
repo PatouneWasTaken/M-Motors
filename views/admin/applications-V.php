@@ -45,20 +45,20 @@ require __DIR__ . "/../components/head.php"
 					</span>
 				</td>
 				<td>
-					<a class="edit-btn" href="/M-Motors/public/index.php?page=admin_download_dossier&id=<?= (int)$a['id'] ?>" target="_blank">PDF</a>
+					<a class="edit-btn" href="/index.php?page=admin_download_dossier&id=<?= (int)$a['id'] ?>" target="_blank">PDF</a>
 				</td>
 				<td class="actions">
-					<form action="/M-Motors/public/index.php?page=admin_update_application" method="POST">
+					<form action="/index.php?page=admin_update_application" method="POST">
 						<input type="hidden" name="id" value="<?= (int)$a['id'] ?>">
 						<input type="hidden" name="status" value="accepted">
 						<button type="submit" class="edit-btn">Accepter</button>
 					</form>
-					<form action="/M-Motors/public/index.php?page=admin_update_application" method="POST">
+					<form action="/index.php?page=admin_update_application" method="POST">
 						<input type="hidden" name="id" value="<?= (int)$a['id'] ?>">
 						<input type="hidden" name="status" value="refused">
 						<button type="submit" class="delete-btn">Refuser</button>
 					</form>
-					<form action="/M-Motors/public/index.php?page=admin_delete_application" method="POST" onsubmit="return confirm('Supprimer définitivement ce dossier ? Le PDF sera aussi effacé.');">
+					<form action="/index.php?page=admin_delete_application" method="POST" onsubmit="return confirm('Supprimer définitivement ce dossier ? Le PDF sera aussi effacé.');">
 						<input type="hidden" name="id" value="<?= (int)$a['id'] ?>">
 						<button type="submit" class="remove-btn">Supprimer</button>
 					</form>
@@ -70,7 +70,7 @@ require __DIR__ . "/../components/head.php"
 
 	<?php endif; ?>
 
-	<a href="/M-Motors/public/index.php?page=dashboard" class="btn">← Retour au dashboard</a>
+	<a href="/index.php?page=dashboard" class="btn">← Retour au dashboard</a>
 
 </main>
 

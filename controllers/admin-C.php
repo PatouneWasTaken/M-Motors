@@ -7,7 +7,7 @@ class AdminController {
 
     private function checkAdmin() {
         if (!isset($_SESSION['user_id']) || empty($_SESSION['admin']) || $_SESSION['admin'] != 1) {
-            header("Location: /M-Motors/public/index.php");
+            header("Location: /index.php");
             exit;
         }
     }
@@ -115,7 +115,7 @@ class AdminController {
             $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
             $imageName = uniqid('veh_', true) . '.' . $ext;
 
-            $target = __DIR__ . '/../uploads/' . $imageName;
+            $target = __DIR__ . '/../public/uploads/' . $imageName;
 
             if (!move_uploaded_file($file['tmp_name'], $target)) {
                 echo "Erreur upload";
@@ -172,7 +172,7 @@ class AdminController {
         $id = (int)($_GET['id'] ?? 0);
 
         if ($id <= 0) {
-            header("Location: /M-Motors/public/index.php?page=dashboard");
+            header("Location: /index.php?page=dashboard");
             exit;
         }
 
@@ -182,7 +182,7 @@ class AdminController {
             $vehicle = getVehicleById($id);
 
             if (!$vehicle) {
-                header("Location: /M-Motors/public/index.php?page=dashboard");
+                header("Location: /index.php?page=dashboard");
                 exit;
             }
 
@@ -202,7 +202,7 @@ class AdminController {
         $errors = validateVehicle($_POST);
         if ($errors) {
             $_SESSION['edit_error'] = $errors[0];
-            header("Location: /M-Motors/public/index.php?page=admin_edit_vehicle&id=" . $id);
+            header("Location: /index.php?page=admin_edit_vehicle&id=" . $id);
             exit;
         }
 
@@ -215,24 +215,24 @@ class AdminController {
 
             if ($file['error'] !== 0) {
                 $_SESSION['edit_error'] = "Erreur upload";
-                header("Location: /M-Motors/public/index.php?page=admin_edit_vehicle&id=" . $id);
+                header("Location: /index.php?page=admin_edit_vehicle&id=" . $id);
                 exit;
             }
 
             if (!isAllowedImage($file['name'], $file['size'])) {
                 $_SESSION['edit_error'] = "Image invalide (format accepté : jpg, jpeg, png, webp ; 2 Mo max)";
-                header("Location: /M-Motors/public/index.php?page=admin_edit_vehicle&id=" . $id);
+                header("Location: /index.php?page=admin_edit_vehicle&id=" . $id);
                 exit;
             }
 
             $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
             $imageName = uniqid('veh_', true) . '.' . $ext;
 
-            $target = __DIR__ . '/../uploads/' . $imageName;
+            $target = __DIR__ . '/../public/uploads/' . $imageName;
 
             if (!move_uploaded_file($file['tmp_name'], $target)) {
                 $_SESSION['edit_error'] = "Erreur upload";
-                header("Location: /M-Motors/public/index.php?page=admin_edit_vehicle&id=" . $id);
+                header("Location: /index.php?page=admin_edit_vehicle&id=" . $id);
                 exit;
             }
         }
@@ -241,7 +241,7 @@ class AdminController {
         if ($imageName !== null) {
             $old = getVehicleById($id);
             if ($old && !empty($old['photo'])) {
-                $oldPath = __DIR__ . '/../uploads/' . $old['photo'];
+                $oldPath = __DIR__ . '/../public/uploads/' . $old['photo'];
                 if (is_file($oldPath)) {
                     unlink($oldPath);
                 }
@@ -250,7 +250,7 @@ class AdminController {
 
         updateVehicle($id, $brand, $model, $type, $price, $description, (int)($_POST['kms'] ?? 0), $imageName);
 
-        header("Location: /M-Motors/public/index.php?page=dashboard");
+        header("Location: /index.php?page=dashboard");
         exit;
     }
 
@@ -269,7 +269,7 @@ class AdminController {
         $id = (int)($_POST['id'] ?? 0);
 
         if ($id <= 0) {
-            header("Location: /M-Motors/public/index.php?page=dashboard");
+            header("Location: /index.php?page=dashboard");
             exit;
         }
 
@@ -285,7 +285,7 @@ class AdminController {
 
         // Nettoyage des fichiers orphelins sur le disque
         if ($vehicle && !empty($vehicle['photo'])) {
-            $photoPath = __DIR__ . '/../uploads/' . $vehicle['photo'];
+            $photoPath = __DIR__ . '/../public/uploads/' . $vehicle['photo'];
             if (is_file($photoPath)) {
                 unlink($photoPath);
             }
@@ -298,7 +298,7 @@ class AdminController {
             }
         }
 
-        header("Location: /M-Motors/public/index.php?page=dashboard");
+        header("Location: /index.php?page=dashboard");
         exit;
     }
 
@@ -332,7 +332,7 @@ class AdminController {
             updateApplicationStatus($id, $status);
         }
 
-        header("Location: /M-Motors/public/index.php?page=admin_applications");
+        header("Location: /index.php?page=admin_applications");
         exit;
     }
 
@@ -351,7 +351,7 @@ class AdminController {
         $id = (int)($_POST['id'] ?? 0);
 
         if ($id <= 0) {
-            header("Location: /M-Motors/public/index.php?page=admin_applications");
+            header("Location: /index.php?page=admin_applications");
             exit;
         }
 
@@ -367,7 +367,7 @@ class AdminController {
             }
         }
 
-        header("Location: /M-Motors/public/index.php?page=admin_applications");
+        header("Location: /index.php?page=admin_applications");
         exit;
     }
 

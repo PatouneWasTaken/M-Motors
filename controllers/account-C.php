@@ -9,13 +9,13 @@ class AccountController {
 
     private function requireLogin() {
         if (!isset($_SESSION['user_id'])) {
-            header("Location: /M-Motors/public/index.php?page=login");
+            header("Location: /index.php?page=login");
             exit;
         }
     }
 
     private function back() {
-        header("Location: /M-Motors/public/index.php?page=account");
+        header("Location: /index.php?page=account");
         exit;
     }
 

@@ -29,7 +29,7 @@ require __DIR__ . "/components/head.php"
 			<section class="auth-panel login">
 				<h2>Connectez-vous</h2>
 
-				<form action="/M-Motors/controllers/login-C.php" method="POST">
+				<form action="/index.php?page=login_submit" method="POST">
 
     				<label for="login-email">Adresse email :</label>
     				<input type="email" id="login-email" name="email" value="<?= e($loginOld['email'] ?? '') ?>" required>
@@ -50,7 +50,7 @@ require __DIR__ . "/components/head.php"
 			<section class="auth-panel register">
 				<h2>Inscrivez-vous</h2>
 
-				<form action="/M-Motors/controllers/register-C.php" method="POST">
+				<form action="/index.php?page=register_submit" method="POST">
 
     				<label for="reg-firstname">Prénom :</label>
     				<input type="text" id="reg-firstname" name="firstname" value="<?= e($registerOld['firstname'] ?? '') ?>" required>
@@ -77,7 +77,7 @@ require __DIR__ . "/components/head.php"
 
 		<!-- Tiers droit : logo M-Motors -->
 		<section class="auth-brand">
-			<img src="/M-Motors/public/assets/letter-m.png" alt="Logo M-Motors">
+			<img src="/assets/letter-m.png" alt="Logo M-Motors">
 			<p class="brand-name">M-Motors</p>
 		</section>
 

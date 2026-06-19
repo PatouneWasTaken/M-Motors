@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const BASE = "/M-Motors/public/index.php";
+    const BASE = "/index.php";
 
     const addForm     = document.querySelector("#addVehicleForm");
     const filtersForm = document.querySelector("#filters");

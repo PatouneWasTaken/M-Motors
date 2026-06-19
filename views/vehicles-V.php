@@ -16,7 +16,7 @@ require __DIR__ . "/components/head.php"
 
 </main>
 
-<script src="/M-Motors/public/scripts/vehicles-list.js"></script>
+<script src="/scripts/vehicles-list.js"></script>
 
 <?php require_once __DIR__ . "/components/footer.php"; ?>
 

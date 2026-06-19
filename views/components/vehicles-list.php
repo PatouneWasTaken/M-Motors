@@ -17,13 +17,13 @@
 
     <section class="vehicle-grid">
         <?php foreach ($vehicles as $vehicle) : 
-            $image = "/M-Motors/public/assets/no-photos.png";
+            $image = "/assets/no-photos.png";
 
 			if (
     			!empty($vehicle['photo']) &&
-    			file_exists(__DIR__ . '/../../uploads/' . $vehicle['photo'])
+    			file_exists(__DIR__ . '/../../public/uploads/' . $vehicle['photo'])
 			) {
-    			$image = "/M-Motors/uploads/" . e($vehicle['photo']);
+    			$image = "/uploads/" . e($vehicle['photo']);
 			}
         ?>
 
@@ -50,7 +50,7 @@
 
             </div>
 
-            <a class="card-cta" href="/M-Motors/public/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?><?= $filterQs ? '&' . $filterQs : '' ?>">
+            <a class="card-cta" href="/index.php?page=vehicle&id=<?= (int)$vehicle['id'] ?><?= $filterQs ? '&' . $filterQs : '' ?>">
                 <span>Plus d'infos</span>
                 <span class="arrow">→</span>
             </a>

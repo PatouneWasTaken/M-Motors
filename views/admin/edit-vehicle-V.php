@@ -14,13 +14,13 @@ require __DIR__ . "/../components/head.php"
 
 <main class="edit-vehicle">
 
-	<a href="/M-Motors/public/index.php?page=dashboard" class="btn">← Retour au dashboard</a>
+	<a href="/index.php?page=dashboard" class="btn">← Retour au dashboard</a>
 
 	<section class="admin-grid">
 
     	<div class="admin-form">
 
-        	<form action="/M-Motors/public/index.php?page=admin_edit_vehicle&id=<?= (int)$vehicle['id'] ?>" method="POST" enctype="multipart/form-data">
+        	<form action="/index.php?page=admin_edit_vehicle&id=<?= (int)$vehicle['id'] ?>" method="POST" enctype="multipart/form-data">
 
             	<input name="brand" placeholder="Marque" value="<?= e($vehicle['brand']) ?>" required>
 				<input name="model" placeholder="Model" value="<?= e($vehicle['model']) ?>" required>
@@ -35,7 +35,7 @@ require __DIR__ . "/../components/head.php"
             	<input name="price" type="number" placeholder="Prix" value="<?= (int)$vehicle['price'] ?>" required>
 
 				<p>Photo actuelle :</p>
-				<img src="/M-Motors/uploads/<?= e($vehicle['photo']) ?>" alt="" style="max-width:200px;">
+				<img src="/uploads/<?= e($vehicle['photo']) ?>" alt="" style="max-width:200px;">
 
             	<input type="file" name="image" accept="image/*" onchange="previewImage(event)">
 				<img id="preview" style="max-width:200px; display:none;">
@@ -58,7 +58,7 @@ require __DIR__ . "/../components/head.php"
 
 </main>
 
-<script src="/M-Motors/toolbox/tools.js"></script>
+<script src="/scripts/tools.js"></script>
 
 <?php require_once __DIR__ . "/../components/footer.php"; ?>
 

@@ -10,19 +10,19 @@
 
 	<span class='left-nav'>
 
-		<img src="/M-Motors/public/assets/letter-m.png" alt="Logo M-Motors">
+		<img src="/assets/letter-m.png" alt="Logo M-Motors">
 
 		<nav>
 		
-			<a href="/M-Motors/public/index.php" class="btn <?= !$currentType ? 'active' : '' ?>">
+			<a href="/index.php" class="btn <?= !$currentType ? 'active' : '' ?>">
 				Tous
 			</a>
 
-			<a href="/M-Motors/public/index.php?type=sale" class="btn <?= $currentType === 'sale' ? 'active' : '' ?>">
+			<a href="/index.php?type=sale" class="btn <?= $currentType === 'sale' ? 'active' : '' ?>">
        			Vente
 			</a>
 
-			<a href="/M-Motors/public/index.php?type=rent" class="btn <?= $currentType === 'rent' ? 'active' : '' ?>">
+			<a href="/index.php?type=rent" class="btn <?= $currentType === 'rent' ? 'active' : '' ?>">
        			Location
 			</a>
 
@@ -32,10 +32,10 @@
 	<nav class='right-nav'>
 
 		<?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) { ?>
-    		<a href="/M-Motors/public/index.php?page=dashboard">
+    		<a href="/index.php?page=dashboard">
         		Dashboard
     		</a>
-    		<a href="/M-Motors/public/index.php?page=admin_applications">
+    		<a href="/index.php?page=admin_applications">
         		Dossiers
     		</a>
 		<?php } ?>
@@ -44,12 +44,12 @@
 			$initial = mb_strtoupper(mb_substr($_SESSION['user_name'] ?? '', 0, 1));
 			if ($initial === '') { $initial = '?'; }
 		?>
-			<a href="/M-Motors/public/index.php?page=account" class='profile'>
+			<a href="/index.php?page=account" class='profile'>
 				<span class="profile-initial"><?= e($initial) ?></span>
 			</a>
 		<?php } else { ?>
-			<a href="/M-Motors/public/index.php?page=login" class='profile'>
-				<img src="/M-Motors/public/assets/user.png" alt="Connexion">
+			<a href="/index.php?page=login" class='profile'>
+				<img src="/assets/user.png" alt="Connexion">
 			</a>
 		<?php } ?>
 

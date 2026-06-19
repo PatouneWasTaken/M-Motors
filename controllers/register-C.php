@@ -15,7 +15,7 @@ $old = [
 function registerFail($message, $old) {
     $_SESSION['register_error'] = $message;
     $_SESSION['register_old'] = $old;
-    header("Location: /M-Motors/public/index.php?page=login");
+    header("Location: /index.php?page=login");
     exit;
 }
 

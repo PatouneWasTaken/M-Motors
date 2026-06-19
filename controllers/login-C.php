@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../toolbox/validators.php';
 
@@ -7,7 +9,7 @@ require_once __DIR__ . '/../toolbox/validators.php';
 function loginFail($message, $email = '') {
     $_SESSION['login_error'] = $message;
     $_SESSION['login_old'] = ['email' => $email];
-    header("Location: /M-Motors/public/index.php?page=login");
+    header("Location: /index.php?page=login");
     exit;
 }
 
@@ -34,7 +36,7 @@ try {
 
         session_regenerate_id(true);
 
-        header("Location: /M-Motors/public/index.php?page=dashboard");
+        header("Location: /index.php?page=dashboard");
         exit;
 
     } else {

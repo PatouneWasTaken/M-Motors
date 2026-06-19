@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
 
-            fetch("/M-Motors/public/index.php?page=vehicles&" + params.toString())
+            fetch("/index.php?page=vehicles&" + params.toString())
     			.then(response => response.text())
     			.then(html => {
 

@@ -51,8 +51,8 @@ require __DIR__ . "/../components/head.php"
 
 </main>
 
-<script src="/M-Motors/public/scripts/admin.js"></script>
-<script src="/M-Motors/toolbox/tools.js"></script>
+<script src="/scripts/admin.js"></script>
+<script src="/scripts/tools.js"></script>
 
 <?php require_once __DIR__ . "/../components/footer.php"; ?>
 

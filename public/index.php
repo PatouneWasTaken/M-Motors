@@ -15,7 +15,7 @@ switch ($page) {
 
 	case 'apply':
 		if (!isset($_SESSION['user_id'])) {
-			header("Location: /M-Motors/public/index.php?page=login");
+			header("Location: /index.php?page=login");
 			exit;
 		}
 		require __DIR__ . '/../views/apply-V.php';
@@ -29,6 +29,14 @@ switch ($page) {
 
 	case 'login':
 		require __DIR__ . '/../views/login-V.php';
+		break;
+
+	case 'login_submit':
+		require_once '../controllers/login-C.php';
+		break;
+
+	case 'register_submit':
+		require_once '../controllers/register-C.php';
 		break;
 
 	case 'about':

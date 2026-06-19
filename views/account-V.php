@@ -33,7 +33,7 @@ require __DIR__ . "/components/head.php"
 				<section class="auth-panel">
 					<h2>Mes informations</h2>
 
-					<form action="/M-Motors/public/index.php?page=account_update_profile" method="POST">
+					<form action="/index.php?page=account_update_profile" method="POST">
 						<label for="acc-name">Nom :</label>
 						<input type="text" id="acc-name" name="name" value="<?= e($user['name'] ?? '') ?>" required>
 
@@ -48,7 +48,7 @@ require __DIR__ . "/components/head.php"
 				<section class="auth-panel">
 					<h2>Changer de mot de passe</h2>
 
-					<form action="/M-Motors/public/index.php?page=account_update_password" method="POST">
+					<form action="/index.php?page=account_update_password" method="POST">
 						<label for="acc-current">Mot de passe actuel :</label>
 						<input type="password" id="acc-current" name="current_password" required>
 
@@ -82,7 +82,7 @@ require __DIR__ . "/components/head.php"
 			</section>
 
 			<!-- Déconnexion -->
-			<form action="/M-Motors/public/index.php?page=logout" method="POST" class="logout-form">
+			<form action="/index.php?page=logout" method="POST" class="logout-form">
 				<button type="submit">Se déconnecter</button>
 			</form>
 
@@ -90,7 +90,7 @@ require __DIR__ . "/components/head.php"
 
 		<!-- Tiers droit : logo M-Motors, pleine hauteur -->
 		<section class="auth-brand">
-			<img src="/M-Motors/public/assets/letter-m.png" alt="Logo M-Motors">
+			<img src="/assets/letter-m.png" alt="Logo M-Motors">
 			<p class="brand-name">M-Motors</p>
 		</section>
 

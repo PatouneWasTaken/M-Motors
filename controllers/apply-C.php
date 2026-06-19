@@ -12,14 +12,14 @@ class ApplicationController {
     private function fail($message, $vehicleId, $old = []) {
         $_SESSION['apply_error'] = $message;
         $_SESSION['apply_old'] = $old;
-        header("Location: /M-Motors/public/index.php?page=apply&vehicle_id=" . (int)$vehicleId);
+        header("Location: /index.php?page=apply&vehicle_id=" . (int)$vehicleId);
         exit;
     }
 
     public function store() {
 
         if (!isset($_SESSION['user_id'])) {
-            header("Location: /M-Motors/public/index.php?page=login");
+            header("Location: /index.php?page=login");
             exit;
         }
 
@@ -102,7 +102,7 @@ class ApplicationController {
             'document'   => $filename,
         ]);
 
-        header("Location: /M-Motors/public/index.php?success=1");
+        header("Location: /index.php?success=1");
         exit;
     }
 }

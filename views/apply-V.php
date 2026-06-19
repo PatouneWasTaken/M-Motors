@@ -24,11 +24,11 @@ require __DIR__ . "/components/head.php"
 
 <main class="apply">
 
-	<a href="/M-Motors/public/index.php?page=vehicle&id=<?= (int)($_GET['vehicle_id'] ?? 0) ?><?= $filterQs ? '&' . $filterQs : '' ?>" class="btn">← Retour au véhicule</a>
+	<a href="/index.php?page=vehicle&id=<?= (int)($_GET['vehicle_id'] ?? 0) ?><?= $filterQs ? '&' . $filterQs : '' ?>" class="btn">← Retour au véhicule</a>
 
 <h1>Déposer un dossier</h1>
 
-<form action="/M-Motors/public/index.php?page=submit_app" method="POST" enctype="multipart/form-data">
+<form action="/index.php?page=submit_app" method="POST" enctype="multipart/form-data">
 
     <input type="hidden" name="vehicle_id" value="<?= (int)($_GET['vehicle_id'] ?? 0) ?>">
 

@@ -10,7 +10,7 @@ require __DIR__ . "/components/head.php"
 
 <main class="content-page">
 
-	<img class="side-logo" src="/M-Motors/public/assets/letter-m.png" alt="Logo M-Motors">
+	<img class="side-logo" src="/assets/letter-m.png" alt="Logo M-Motors">
 
 	<div class="content-page-body">
 
@@ -45,7 +45,7 @@ require __DIR__ . "/components/head.php"
 
 	</div>
 
-	<img class="side-logo" src="/M-Motors/public/assets/letter-m.png" alt="Logo M-Motors">
+	<img class="side-logo" src="/assets/letter-m.png" alt="Logo M-Motors">
 
 </main>
 

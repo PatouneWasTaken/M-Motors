@@ -18,7 +18,7 @@ require __DIR__ . "/components/head.php"
             'brand' => $_GET['brand'] ?? '',
         ]));
     ?>
-    <a href="/M-Motors/public/index.php<?= $backQs ? '?' . $backQs : '' ?>" class="btn">← Retour au catalogue</a>
+    <a href="/index.php<?= $backQs ? '?' . $backQs : '' ?>" class="btn">← Retour au catalogue</a>
 
     <h1>
         <?= e($vehicle['brand'] . ' ' . $vehicle['model']) ?>
@@ -31,12 +31,12 @@ require __DIR__ . "/components/head.php"
 
         <div class="detail-image">
             <?php
-                $image = "/M-Motors/public/assets/no-photos.png";
+                $image = "/assets/no-photos.png";
                 if (
                     !empty($vehicle['photo']) &&
-                    file_exists(__DIR__ . '/../uploads/' . $vehicle['photo'])
+                    file_exists(__DIR__ . '/../public/uploads/' . $vehicle['photo'])
                 ) {
-                    $image = "/M-Motors/uploads/" . e($vehicle['photo']);
+                    $image = "/uploads/" . e($vehicle['photo']);
                 }
             ?>
             <img src="<?= $image ?>" alt="<?= e($vehicle['brand'] . ' ' . $vehicle['model']) ?>">
@@ -57,11 +57,11 @@ require __DIR__ . "/components/head.php"
             </p>
 
 			<?php if (isset($_SESSION['user_id'])) : ?>
-    		<a class="btn-primary" href="/M-Motors/public/index.php?page=apply&vehicle_id=<?= (int)$vehicle['id'] ?><?= $backQs ? '&' . $backQs : '' ?>">
+    		<a class="btn-primary" href="/index.php?page=apply&vehicle_id=<?= (int)$vehicle['id'] ?><?= $backQs ? '&' . $backQs : '' ?>">
        			Déposer un dossier
     		</a>
 			<?php else : ?>
-			<a class="btn-primary" href="/M-Motors/public/index.php?page=login">
+			<a class="btn-primary" href="/index.php?page=login">
         		Connectez-vous pour déposer un dossier
    			 </a>
 			<?php endif; ?>

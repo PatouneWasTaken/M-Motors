@@ -1,8 +1,8 @@
 <footer>
 
 	<nav class="footer-links">
-		<a href="/M-Motors/public/index.php?page=about">À propos</a>
-		<a href="/M-Motors/public/index.php?page=legal">Mentions légales</a>
+		<a href="/index.php?page=about">À propos</a>
+		<a href="/index.php?page=legal">Mentions légales</a>
 	</nav>
 
 	<p class="copyright">© 2026 M-Motors — Tous droits réservés.</p>
