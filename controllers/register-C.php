@@ -46,7 +46,7 @@ try {
 
     $stmt->execute([$name, $email, $hash]);
 
-    header("Location: ../public/index.php?page=login");
+    header("Location: /index.php?page=login");
     exit;
 
 } catch (PDOException $e) {

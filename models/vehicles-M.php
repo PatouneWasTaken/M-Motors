@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../config/database.php';
 
+// récupère les véhicules, avec filtres optionnels (type/prix/marque) et pagination
 function getVehicles($type = null, $min = null, $max = null, $brand = null, $page = 1, $limit = null) {
     global $pdo;
 
@@ -51,6 +52,7 @@ function getVehicles($type = null, $min = null, $max = null, $brand = null, $pag
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+// récupère un véhicule par son id
 function getVehicleById($id) {
     global $pdo;
 
@@ -61,6 +63,7 @@ function getVehicleById($id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+// liste des marques (pour le menu des filtres)
 function getBrands() {
     global $pdo;
 
@@ -70,6 +73,7 @@ function getBrands() {
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
+// compte les véhicules (pour calculer le nombre de pages)
 function countVehicles($type = null, $min = null, $max = null, $brand = null) {
     global $pdo;
 
@@ -101,10 +105,12 @@ function countVehicles($type = null, $min = null, $max = null, $brand = null) {
 
     return $stmt->fetchColumn();
 }
+
+// met à jour un véhicule
 function updateVehicle($id, $brand, $model, $type, $price, $description, $kms, $photo = null) {
     global $pdo;
 
-    // Si une nouvelle photo est fournie on la met à jour, sinon on garde l'ancienne
+    // si une nouvelle photo est fournie on la met à jour, sinon on garde l'ancienne
     if ($photo !== null) {
         $sql = "UPDATE vehicles
                 SET brand = :brand, model = :model, type = :type,
@@ -140,6 +146,7 @@ function updateVehicle($id, $brand, $model, $type, $price, $description, $kms, $
     return $stmt->execute($params);
 }
 
+// supprime un véhicule
 function deleteVehicle($id) {
     global $pdo;
 

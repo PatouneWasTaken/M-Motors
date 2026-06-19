@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../config/database.php';
 
+// récupère un utilisateur (sans le mot de passe)
 function getUserById($id) {
     global $pdo;
 
@@ -11,6 +12,7 @@ function getUserById($id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+// récupère le hash du mot de passe (pour le vérifier)
 function getUserPasswordHash($id) {
     global $pdo;
 
@@ -21,7 +23,7 @@ function getUserPasswordHash($id) {
     return $row ? $row['password'] : null;
 }
 
-// Vrai si l'email est déjà utilisé par un AUTRE utilisateur
+// vrai si l'email est déjà utilisé par un AUTRE utilisateur
 function emailTakenByOther($email, $userId) {
     global $pdo;
 
@@ -31,6 +33,7 @@ function emailTakenByOther($email, $userId) {
     return (bool) $stmt->fetch();
 }
 
+// met à jour le nom et l'email
 function updateUserProfile($id, $name, $email) {
     global $pdo;
 
@@ -43,6 +46,7 @@ function updateUserProfile($id, $name, $email) {
     ]);
 }
 
+// met à jour le mot de passe
 function updateUserPassword($id, $hash) {
     global $pdo;
 

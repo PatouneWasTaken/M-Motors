@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../config/database.php';
 
+// tous les dossiers + le nom du véhicule et de l'utilisateur (pour le dashboard admin)
 function getAllApplications() {
     global $pdo;
 
@@ -26,6 +27,7 @@ function getAllApplications() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+// un dossier par son id
 function getApplicationById($id) {
     global $pdo;
 
@@ -36,6 +38,7 @@ function getApplicationById($id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+// change le statut d'un dossier (en attente / accepté / refusé)
 function updateApplicationStatus($id, $status) {
     global $pdo;
 
@@ -48,6 +51,7 @@ function updateApplicationStatus($id, $status) {
     ]);
 }
 
+// supprime un dossier
 function deleteApplication($id) {
     global $pdo;
 

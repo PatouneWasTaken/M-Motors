@@ -1,5 +1,7 @@
 <?php
 
+// Routeur principal : selon le paramètre ?page=, on appelle le bon contrôleur ou la bonne vue.
+
 session_start();
 require_once '../controllers/vehicles-C.php';
 require_once '../toolbox/tools.php';

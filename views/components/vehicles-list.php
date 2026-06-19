@@ -1,8 +1,7 @@
 <?php require_once __DIR__ . "/../../toolbox/tools.php"; ?>
 
 <?php
-    // Filtres actifs : on les propage dans le lien vers la fiche détail
-    // pour pouvoir les restaurer au retour vers le catalogue.
+    // on garde les filtres dans le lien pour les retrouver au retour
     $filterQs = http_build_query(array_filter([
         'type'  => $_GET['type']  ?? '',
         'min'   => $_GET['min']   ?? '',

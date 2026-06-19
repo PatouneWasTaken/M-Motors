@@ -7,7 +7,7 @@ $error = $_SESSION['apply_error'] ?? null;
 $old   = $_SESSION['apply_old'] ?? [];
 unset($_SESSION['apply_error'], $_SESSION['apply_old']);
 
-// Filtres actifs propagés depuis la fiche détail (pour les conserver au retour)
+// on garde les filtres pour les retrouver au retour
 $filterQs = http_build_query(array_filter([
     'type'  => $_GET['type']  ?? '',
     'min'   => $_GET['min']   ?? '',

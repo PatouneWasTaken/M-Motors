@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+         bootstrap="tests/bootstrap.php"
          colors="true">
     <testsuites>
         <testsuite name="M-Motors">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+
+    <!-- Périmètre de couverture : la logique testable unitairement
+         (modèles + fonctions utilitaires/validation). Les vues sont des
+         templates et les contrôleurs relèvent de tests d'intégration. -->
+    <source>
+        <include>
+            <directory>models</directory>
+            <directory>toolbox</directory>
+        </include>
+        <exclude>
+            <file>toolbox/tools.js</file>
+        </exclude>
+    </source>
 </phpunit>

@@ -1,28 +1,16 @@
 <?php
 
-/*
- * Connexion à la base de données (PDO).
- *
- * --- PRODUCTION ---
- * Ne jamais laisser d'identifiants en clair dans le code versionné.
- * Définissez plutôt ces variables d'environnement sur le serveur :
- *     DB_HOST, DB_NAME, DB_USER, DB_PASS
- *     APP_ENV=production
- *
- * Selon l'hébergeur, on les définit via le panneau d'administration,
- * un fichier .env, ou dans la configuration Apache (ex. SetEnv DB_USER ...).
- *
- * --- DÉVELOPPEMENT LOCAL (XAMPP) ---
- * Si ces variables ne sont pas définies, on retombe sur les valeurs
- * par défaut ci-dessous. En local, ne pas définir APP_ENV (ou la mettre
- * à "development") pour voir le détail des erreurs.
- */
+// si une connexion est déjà fournie (par les tests), on ne se reconnecte pas
+if (isset($GLOBALS['pdo']) && $GLOBALS['pdo'] instanceof PDO) {
+    return;
+}
 
 $host     = getenv('DB_HOST') ?: 'localhost';
 $dbname   = getenv('DB_NAME') ?: 'MotorsDB';
 $user     = getenv('DB_USER') ?: 'root';
 $password = getenv('DB_PASS') ?: '';
 
+// true en prod -> on masque le détail des erreurs
 $isProduction = getenv('APP_ENV') === 'production';
 
 $options = [

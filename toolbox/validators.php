@@ -1,10 +1,7 @@
 <?php
 
-/**
- * Fonctions de validation pures (sans base de données, sans superglobales).
- * Chaque validateXxx() reçoit un tableau de données et renvoie la liste des
- * erreurs : un tableau vide signifie que les données sont valides.
- */
+// Fonctions de validation. On reçoit les données et on renvoie la liste des erreurs.
+// Si le tableau renvoyé est vide, c'est que tout est bon.
 
 function validateRegistration(array $data): array {
     $errors = [];
@@ -22,6 +19,7 @@ function validateRegistration(array $data): array {
         $errors[] = "Email invalide";
     }
 
+    // mot de passe : 8 caractères min, au moins une lettre et un chiffre
     if (
         strlen($password) < 8 ||
         !preg_match('/[A-Za-z]/', $password) ||
@@ -62,6 +60,7 @@ function validateVehicle(array $data): array {
         $errors[] = "Marque et modèle obligatoires";
     }
 
+    // seulement deux types possibles
     if (!in_array($type, ['sale', 'rent'], true)) {
         $errors[] = "Type invalide";
     }
@@ -100,10 +99,7 @@ function validateApplication(array $data): array {
     return $errors;
 }
 
-/**
- * Vérifie qu'un fichier image est acceptable (extension + taille).
- * Taille par défaut : 2 Mo.
- */
+// vérifie une image : extension autorisée + taille (2 Mo max par défaut)
 function isAllowedImage(string $filename, int $size, int $maxSize = 2097152): bool {
     if ($size <= 0 || $size > $maxSize) {
         return false;
@@ -114,17 +110,17 @@ function isAllowedImage(string $filename, int $size, int $maxSize = 2097152): bo
     return in_array($ext, ['jpg', 'jpeg', 'png', 'webp'], true);
 }
 
-/** Vrai si la taille est comprise entre 1 octet et $max. */
+// vrai si la taille est entre 1 octet et $max
 function isWithinMaxSize(int $size, int $max): bool {
     return $size > 0 && $size <= $max;
 }
 
-/** Vrai si le type MIME correspond à un PDF. */
+// vrai si le fichier est bien un PDF
 function isPdfMimeType(string $mimeType): bool {
     return $mimeType === 'application/pdf';
 }
 
-/** Vrai si le mot de passe fait 8+ caractères et contient au moins une lettre et un chiffre. */
+// vrai si le mot de passe fait 8+ caractères avec au moins une lettre et un chiffre
 function isStrongPassword(string $password): bool {
     return strlen($password) >= 8
         && preg_match('/[A-Za-z]/', $password)

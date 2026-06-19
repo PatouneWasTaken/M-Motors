@@ -101,9 +101,23 @@ class ValidatorsTest extends TestCase
             'model' => 'Clio',
             'type'  => 'sale',
             'price' => '8990',
+            'kms'   => '50000',
         ];
 
         $this->assertSame([], validateVehicle($data));
+    }
+
+    public function testVehicleRejectsInvalidKms()
+    {
+        $data = [
+            'brand' => 'Renault',
+            'model' => 'Clio',
+            'type'  => 'sale',
+            'price' => '8990',
+            'kms'   => 'abc',
+        ];
+
+        $this->assertContains("Kilométrage invalide", validateVehicle($data));
     }
 
     public function testVehicleRejectsBadType()
@@ -113,6 +127,7 @@ class ValidatorsTest extends TestCase
             'model' => 'Clio',
             'type'  => 'gift',
             'price' => '8990',
+            'kms'   => '50000',
         ];
 
         $this->assertContains("Type invalide", validateVehicle($data));
@@ -125,6 +140,7 @@ class ValidatorsTest extends TestCase
             'model' => 'Clio',
             'type'  => 'rent',
             'price' => 'abc',
+            'kms'   => '50000',
         ];
 
         $this->assertContains("Prix invalide", validateVehicle($data));
@@ -137,6 +153,7 @@ class ValidatorsTest extends TestCase
             'model' => '',
             'type'  => 'sale',
             'price' => '1000',
+            'kms'   => '50000',
         ];
 
         $this->assertContains("Marque et modèle obligatoires", validateVehicle($data));
