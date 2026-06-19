@@ -1,25 +1,24 @@
 # Dépendances PHP (réinstallables via composer install)
 /vendor/
 
+# Secrets / config locale (ne jamais committer d'identifiants)
+.env
+.env.local
+
 # Dossiers PDF déposés par les utilisateurs (données, pas du code)
 /storage/dossiers/*
 !/storage/dossiers/.gitkeep
 
-# Photos de véhicules uploadées (on garde les images de démo si besoin)
-# /public/uploads/*
-
-# Fichiers système
-.DS_Store
-Thumbs.db
-
-# Secrets / config locale (ne jamais committer d'identifiants)
-.env
-.env.local
+# Logs de surveillance
+/storage/logs/*
+!/storage/logs/.gitkeep
 
 # Rapports / cache des tests
 /coverage/
 .phpunit.result.cache
 
-# Éditeurs
+# Fichiers système / éditeurs
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/

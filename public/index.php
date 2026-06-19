@@ -2,6 +2,7 @@
 
 // Routeur principal : selon le paramètre ?page=, on appelle le bon contrôleur ou la bonne vue.
 
+require_once '../toolbox/monitoring.php'; // surveillance : logs + alerte sur erreur
 session_start();
 require_once '../controllers/vehicles-C.php';
 require_once '../toolbox/tools.php';
