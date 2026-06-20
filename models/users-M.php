@@ -23,7 +23,7 @@ function getUserPasswordHash($id) {
     return $row ? $row['password'] : null;
 }
 
-// vrai si l'email est déjà utilisé par un AUTRE utilisateur
+// vrai si l'email est déjà utilisé par un autre utilisateur
 function emailTakenByOther($email, $userId) {
     global $pdo;
 

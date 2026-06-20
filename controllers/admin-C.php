@@ -67,7 +67,7 @@ class AdminController {
         require __DIR__ . '/../views/admin/vehicles-V.php';
     }
 
-    // AJAX liste (optionnel mais recommandé)
+    // AJAX liste
     public function ajaxVehicles() {
         $this->checkAdmin();
 
@@ -146,7 +146,6 @@ class AdminController {
             return;
         }
 
-		// SQL — entry_by = id de l'admin connecté (colonne NOT NULL + clé étrangère)
         $sql = "INSERT INTO vehicles (brand, model, type, price, photo, description, kms, entry_by)
                 VALUES (:brand, :model, :type, :price, :photo, :description, :kms, :entry_by)";
 
@@ -175,8 +174,8 @@ class AdminController {
             header("Location: /index.php?page=dashboard");
             exit;
         }
-
         // GET : on affiche le formulaire pré-rempli
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
             $vehicle = getVehicleById($id);
@@ -189,7 +188,6 @@ class AdminController {
             require __DIR__ . '/../views/admin/edit-vehicle-V.php';
             return;
         }
-
         // POST : on traite la modification
 
         // Validation

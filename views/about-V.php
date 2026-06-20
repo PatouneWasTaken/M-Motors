@@ -32,9 +32,9 @@ require __DIR__ . "/components/head.php"
 	<h2>Nous contacter</h2>
 
 	<ul class="contact-list">
-		<li><strong>Adresse :</strong> 12 avenue des Garrigues, 34500 Béziers, France</li>
-		<li><strong>Téléphone :</strong> 04 67 00 00 00</li>
-		<li><strong>Email :</strong> contact@m-motors.fr</li>
+		<li><strong>Adresse :</strong> 12 avenue fictive, 34300 Agde, France</li>
+		<li><strong>Téléphone :</strong> 00 00 00 00 00</li>
+		<li><strong>Email :</strong> admin@m-motors.fr</li>
 		<li><strong>Horaires :</strong> du lundi au samedi, de 9h à 18h</li>
 	</ul>
 
