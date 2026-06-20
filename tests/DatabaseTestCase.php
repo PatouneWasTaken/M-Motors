@@ -80,7 +80,7 @@ abstract class DatabaseTestCase extends TestCase
         ");
     }
 
-    /* ----------------------- Helpers de seed ----------------------- */
+    /* Helpers seed */
 
     protected function seedUser(
         string $name = 'Jean',

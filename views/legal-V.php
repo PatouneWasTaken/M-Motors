@@ -19,20 +19,19 @@ require __DIR__ . "/components/head.php"
 	<h2>Éditeur du site</h2>
 	<p>
 		M-Motors SAS, au capital de 50 000 €<br>
-		Siège social : 12 avenue des Garrigues, 34500 Béziers, France<br>
+		Siège social : 12 avenue fictive, 34300 Agde, France<br>
 		SIRET : 000 000 000 00000 (fictif)<br>
-		Téléphone : 04 67 00 00 00<br>
-		Email : contact@m-motors.fr
+		Téléphone : 00 00 00 00 00<br>
+		Email : admin@m-motors.fr
 	</p>
 
 	<h2>Directeur de la publication</h2>
-	<p>Jean Martin, en qualité de représentant légal de M-Motors SAS.</p>
+	<p>Jean Michel, en qualité de représentant légal de M-Motors SAS.</p>
 
 	<h2>Hébergement</h2>
 	<p>
-		HostExample SARL<br>
-		1 rue de l'Hébergement, 75000 Paris, France<br>
-		Téléphone : 01 00 00 00 00
+		OVH<br>
+		2 rue Kellermann - 59100 Roubaix - France
 	</p>
 
 	<h2>Propriété intellectuelle</h2>

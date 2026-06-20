@@ -6,7 +6,7 @@ require_once __DIR__ . '/../toolbox/validators.php';
 
 class ValidatorsTest extends TestCase
 {
-    // --- Registration form ---
+    // Registration form
 
     public function testValidRegistrationPasses()
     {
@@ -69,7 +69,7 @@ class ValidatorsTest extends TestCase
         $this->assertNotEmpty(validateRegistration($data));
     }
 
-    // --- Login form ---
+    // Login form
 
     public function testValidLoginPasses()
     {
@@ -92,7 +92,7 @@ class ValidatorsTest extends TestCase
         $this->assertContains("Tous les champs sont obligatoires", validateLogin($data));
     }
 
-    // --- Vehicle form (add / edit) ---
+    // Vehicle form (add / edit)
 
     public function testValidVehiclePasses()
     {
@@ -159,7 +159,7 @@ class ValidatorsTest extends TestCase
         $this->assertContains("Marque et modèle obligatoires", validateVehicle($data));
     }
 
-    // --- Application form (dossier) ---
+    // Application form (dossier)
 
     public function testValidApplicationPasses()
     {
@@ -194,7 +194,7 @@ class ValidatorsTest extends TestCase
         $this->assertContains("Email invalide", validateApplication($data));
     }
 
-    // --- File upload helpers ---
+    // File upload helpers
 
     public function testAllowsJpgImage()
     {

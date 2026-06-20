@@ -53,7 +53,7 @@ class ApplicationController {
             $this->fail("Véhicule introuvable", $vehicle_id, $old);
         }
 
-        // --- Vérification du fichier ---
+        // Vérification du fichier 
         if (!isset($_FILES['document']) || $_FILES['document']['error'] !== UPLOAD_ERR_OK) {
             $this->fail("Aucun fichier reçu ou erreur lors de l'envoi", $vehicle_id, $old);
         }
@@ -65,7 +65,7 @@ class ApplicationController {
             $this->fail("Le fichier ne doit pas dépasser 5 Mo", $vehicle_id, $old);
         }
 
-        // Type réel du contenu (on ne se fie pas à l'extension envoyée)
+        // Type réel du contenu
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $mime  = $finfo->file($file['tmp_name']);
 
@@ -73,10 +73,10 @@ class ApplicationController {
             $this->fail("Seuls les fichiers PDF sont acceptés", $vehicle_id, $old);
         }
 
-        // Nom de fichier sûr et imprévisible (jamais le nom d'origine)
+        // Nom de fichier sécurisé
         $filename = 'dossier_' . $user_id . '_' . bin2hex(random_bytes(8)) . '.pdf';
 
-        // Stockage HORS du dossier public, dans un répertoire protégé
+        // Stockage hors du dossier public, dans un répertoire protégé
         $dir = __DIR__ . '/../storage/dossiers/';
         if (!is_dir($dir) && !mkdir($dir, 0755, true) && !is_dir($dir)) {
             $this->fail("Impossible de préparer le stockage", $vehicle_id, $old);
@@ -88,7 +88,7 @@ class ApplicationController {
             $this->fail("Échec de l'enregistrement du fichier", $vehicle_id, $old);
         }
 
-        // --- Enregistrement en base ---
+        // Enregistrement 
         $sql = "INSERT INTO applications
                 (user_id, vehicle_id, name, email, document, status)
                 VALUES (:user_id, :vehicle_id, :name, :email, :document, 'pending')";

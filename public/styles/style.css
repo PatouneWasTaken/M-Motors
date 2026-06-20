@@ -403,7 +403,7 @@ main.auth {
   gap: 24px;
 }
 
-/* Bloc des deux formulaires : centré verticalement, hauts alignés */
+/* Bloc des deux formulaires */
 .auth-forms {
   align-self: center;
   display: flex;
@@ -424,7 +424,7 @@ main.auth {
   margin-top: 0;
 }
 
-/* Colonne logo : tout le tiers droit, pleine hauteur */
+/* Colonne logo */
 .auth-brand {
   display: flex;
   flex-direction: column;
@@ -521,7 +521,7 @@ main.auth {
   cursor: pointer;
 }
 
-/* FOOTER : liens, copyright, crédits + pages de contenu */
+/* FOOTER */
 footer {
   color: #EEEBDD;
   text-align: center;
@@ -592,12 +592,10 @@ footer {
   color: #555;
 }
 
-/* ============================================================
-   MOBILE — adaptations sous 768px (desktop inchangé au-dessus)
-   ============================================================ */
+/* MOBILE — 768px  */
 @media (max-width: 768px) {
 
-  /* --- Header : réduit, centré, retour à la ligne si besoin --- */
+  /* Header */
   header {
     flex-wrap: wrap;
     align-items: center;
@@ -620,7 +618,7 @@ footer {
     margin-left: 6px;
   }
 
-  /* --- Cartes catalogue : empilées verticalement --- */
+  /* Cartes catalogue */
   .card {
     flex-direction: column;
     align-items: stretch;
@@ -652,7 +650,7 @@ footer {
     font-size: 1.4em;
   }
 
-  /* --- Filtres : empilés, pleine largeur --- */
+  /* Filtres */
   .filters {
     display: flex;
     flex-direction: column;
@@ -665,7 +663,7 @@ footer {
     padding: 8px;
   }
 
-  /* --- Lignes véhicules du dashboard : passage à la ligne --- */
+  /* Lignes véhicules du dashboard */
   .admin-vehicle-row {
     flex-wrap: wrap;
   }
@@ -673,7 +671,7 @@ footer {
     flex-basis: 100%;
   }
 
-  /* --- Formulaires admin (ajout / modification) : empilés --- */
+  /* Formulaires admin (ajout / modification) */
   .admin-form form {
     display: flex;
     flex-direction: column;
@@ -686,32 +684,32 @@ footer {
     box-sizing: border-box;
   }
 
-  /* --- Formulaire de dépôt de dossier : pleine largeur --- */
+  /* Formulaire de dépôt de dossier */
   .apply input,
   .apply select {
     width: 100%;
     box-sizing: border-box;
   }
 
-  /* --- Tableau des dossiers : défilement horizontal --- */
+  /* Tableau des dossiers */
   .dossiers {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
   }
 
-  /* --- Détail véhicule : marges resserrées --- */
+  /* Détail véhicule */
   .detail-container {
     gap: 16px;
   }
 
-  /* --- Connexion / inscription : espacement réduit --- */
+  /* Connexion / inscription */
   .auth-forms {
     gap: 32px;
     padding: 16px;
   }
 
-  /* --- Mon compte : padding réduit --- */
+  /* Mon compte */
   .account-left {
     padding: 16px;
   }

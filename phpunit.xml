@@ -19,6 +19,7 @@
         </include>
         <exclude>
             <file>toolbox/tools.js</file>
+            <file>toolbox/monitoring.php</file>
         </exclude>
     </source>
 </phpunit>
